@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 /*
     index.php : contrôler frontal (front controller)
         fichier appelé à chaque requête HTTP

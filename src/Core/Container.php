@@ -9,6 +9,7 @@ use App\Model\User;
 use App\Query\UserQuery;
 use App\Service\JWT;
 use App\Controller\Game;
+use App\Controller\Login;
 use App\Query\GameQuery;
 
 /*
@@ -35,6 +36,11 @@ class Container
                   self::getInstance(UserQuery::class),
                );
              },
+             Login::class => function(){ 
+               return new \App\Controller\Login();
+             },
+
+
              Routing::class => function(){ 
                 return new \App\Core\Routing();
              },
@@ -46,6 +52,8 @@ class Container
                   self::getInstance(Database::class),
                );
             },
+
+
              Database::class => function(){
                 return new \App\Core\Database();
              },

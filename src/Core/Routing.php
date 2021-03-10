@@ -59,6 +59,10 @@ class Routing
             'controller' => 'Game',
             'method' => 'deleteEntry',
         ],
+        '/login' => [
+            'controller' => 'Login',
+            'method' => 'index',
+        ],
         
         /*
             utilisation d'une expression rationnelle

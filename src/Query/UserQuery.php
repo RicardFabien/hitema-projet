@@ -4,10 +4,20 @@ namespace App\Query;
 
 use App\Core\Database;
 use App\Model\User;
+use App\Utils\StringUtils;
 use PDO;
+
+
+
 
 class UserQuery
 {
+    const VISITOR_INDICATOR = "visitor";
+    const USER_INDICATOR = "user";
+    const HOST_INDICATOR = "host";
+    const ADMIN_INDICATOR = "admin";
+    
+
     /*
         injection de dépendances : gérer les dépendances entre les objets 
         injection par le constructeur : 
@@ -65,26 +75,61 @@ class UserQuery
         // retour des résultats 
         return $result;
     }
-        // vérifier l'existance de l'utilisateur et le mot de passe
-        public function checkUser(String $login, String $password):bool
-        {
-            // récupérer l'utilisateur
-            $user = $this->findOneBy([
-                'login' => $login,
-            ]);
+    
+    // vérifier l'existance de l'utilisateur et le mot de passe
+    public function checkUser(String $login, String $password):bool
+    {
+        // récupérer l'utilisateur
+        $user = $this->findOneBy([
+            'login' => $login,
+        ]);
 
-            /*
-                password_verify : verifier le mot de passe
-                    mot de passe en clair
-                    hachage du mot de passe
-            */ 
-            if($user && password_verify($password, $user->getPassword()))
-            {   
-                return true;
-            }
-
-            return false;
+        /*
+            password_verify : verifier le mot de passe
+                mot de passe en clair
+                hachage du mot de passe
+        */ 
+        if($user && password_verify($password, $user->getPassword()))
+        {   
+            return true;
         }
 
+        return false;
+    }
+
+    public function getStoredUserLevel():String{
+        
+        $userLevel = $this::VISITOR_INDICATOR;
+        
+        if(isset($_SESSION["login"]) 
+            && isset($_SESSION["password"])){
+
+            $login = $_SESSION["login"];
+            $untreatedPassword = $_SESSION["password"];
+
+            $password = StringUtils::base64url_decode($untreatedPassword);
+        }
+        else
+            return self::VISITOR_INDICATOR; 
+
+        if(!$this->checkUser($login,$password))
+            return self::VISITOR_INDICATOR; 
+
+        $user = $this->findOneBy([
+            'login' => $login
+        ]);
+
+        $level = $user["level"];
+
+        if($level == "admin")
+            return self::ADMIN_INDICATOR;
+        if($level == "user")
+            return self::USER_INDICATOR;
+        if($level == "host")
+            return self::HOST_INDICATOR;
+        else
+            return self::VISITOR_INDICATOR;
+
+    }
     
 }
