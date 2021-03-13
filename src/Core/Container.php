@@ -10,6 +10,7 @@ use App\Query\UserQuery;
 use App\Service\JWT;
 use App\Controller\Game;
 use App\Controller\Login;
+use App\Controller\Logout;
 use App\Query\GameQuery;
 
 /*
@@ -38,6 +39,9 @@ class Container
              },
              Login::class => function(){ 
                return new \App\Controller\Login();
+             },
+             Logout::class => function(){ 
+               return new \App\Controller\Logout();
              },
 
 

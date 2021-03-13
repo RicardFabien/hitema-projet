@@ -7,8 +7,8 @@ use App\Query\UserQuery;
 require_once __DIR__ . '/../_inc/header.php';
 ?>
     <h1>Se connecter</h1>
-    <?php if ($level = UserQuery::VISITOR_INDICATOR) { ?>
-        <form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>  method ="POST">
+    <?php if ($level == UserQuery::VISITOR_INDICATOR) { ?>
+        <form action="/login" method ="POST">
         
             <label for="login">Pseudo:</label>
             <input type="text" id="login" name="login"><br><br>
@@ -19,10 +19,10 @@ require_once __DIR__ . '/../_inc/header.php';
         </form> 
     <?php } else {?>
         <p>Vous êtes connecté sous le pseudo <?php echo $_SESSION["password"] ?> </p>
-        <form action=<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>  method ="POST">
+        <form action="/logout"  method ="POST">
 
             <input type=hidden id="disconnect" name = "disconnect" value = "disconnect"/> 
-            <input type="submit" value="Se connecter">
+            <input type="submit" value="Se deconnecter">
 
         </form> 
     <?php } ?>

@@ -105,9 +105,7 @@ class UserQuery
             && isset($_SESSION["password"])){
 
             $login = $_SESSION["login"];
-            $untreatedPassword = $_SESSION["password"];
-
-            $password = StringUtils::base64url_decode($untreatedPassword);
+            $password = $_SESSION["password"];
         }
         else
             return self::VISITOR_INDICATOR; 
@@ -119,7 +117,7 @@ class UserQuery
             'login' => $login
         ]);
 
-        $level = $user["level"];
+        $level = $user->getLevel();
 
         if($level == "admin")
             return self::ADMIN_INDICATOR;
