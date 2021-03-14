@@ -16,6 +16,25 @@ CREATE TABLE API.game(
   price float NOT NULL
 ); 
 
+
+CREATE TABLE bars (
+  id int(11) NOT NULL,
+  name varchar(255) NOT NULL,
+  lieu varchar(255) NOT NULL,
+  price float NOT NULL,
+  date_creation date NOT NULL,
+  description varchar(10000) NOT NULL
+);
+
+CREATE TABLE bn (
+  id int(11) NOT NULL,
+  name varchar(255) NOT NULL,
+  lieu varchar(255) NOT NULL,
+  price float NOT NULL,
+  date_creation date NOT NULL,
+  description varchar(10000) NOT NULL
+);
+
 -- hachage du mot de passe : algorithme argon2
 INSERT INTO API.user
 VALUE ( NULL, 'admin', '$argon2i$v=19$m=16,t=2,p=1$bWVGVkRJNVljczVLbjJUcQ$kpHdZUT8h+851aKEVnmWGw','admin' );

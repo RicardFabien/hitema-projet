@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+use App\Controller\AnnoncePage;
 use App\Controller\Authentication;
 use App\Controller\Homepage;
 use App\Controller\NotFound;
@@ -11,10 +12,12 @@ use App\Service\JWT;
 use App\Controller\Game;
 use App\Controller\Login;
 use App\Controller\Logout;
+use App\Controller\BN;
+use App\Query\BNQuery;
+use App\Controller\Bars;
+use App\Query\BarsQuery;
 
 use App\Controller\Register;
-
-use App\Query\GameQuery;
 
 /*
     Conteneurs d'instances des classes utilisées dans l'application cette classe renvoie les instances
@@ -40,6 +43,9 @@ class Container
                   self::getInstance(UserQuery::class),
                );
              },
+             AnnoncePage::class => function(){ 
+               return new \App\Controller\AnnoncePage();
+            },
              Login::class => function(){ 
                return new \App\Controller\Login();
              },
@@ -49,8 +55,22 @@ class Container
              Register::class => function(){ 
                return new \App\Controller\Register();
              },
-
-
+            BN::class => function(){ 
+               return new \App\Controller\BN();
+            },
+            BNQuery::class => function(){ 
+               return new \App\Query\BNQuery(
+                  self::getInstance(Database::class),
+               );
+            },
+            Bars::class => function(){ 
+               return new \App\Controller\Bars();
+            },
+            BarsQuery::class => function(){ 
+               return new \App\Query\BarsQuery(
+                  self::getInstance(Database::class),
+               );
+            },
              Routing::class => function(){ 
                 return new \App\Core\Routing();
              },

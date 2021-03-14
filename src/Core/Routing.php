@@ -23,6 +23,22 @@ class Routing
             'controller' => 'Homepage',
             'method' => 'index',
         ],
+        '/annonces' => [
+            'controller' => 'AnnoncePage',
+            'method' => 'annoncePage',
+        ],
+        '/annonces/bars' => [
+            'controller' => 'Bars',
+            'method' => 'showTableBars',
+        ],
+        '/annonces/BN' => [
+            'controller' => 'BN',
+            'method' => 'showTableBN',
+        ],
+        '/annonces/Produit' => [
+            'controller' => 'AnnoncePage',
+            'method' => 'productPage',
+        ],
         '/auth' => [
             'controller' => 'Authentication',
             'method' => 'index',
