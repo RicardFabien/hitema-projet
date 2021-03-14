@@ -11,6 +11,9 @@ use App\Service\JWT;
 use App\Controller\Game;
 use App\Controller\Login;
 use App\Controller\Logout;
+
+use App\Controller\Register;
+
 use App\Query\GameQuery;
 
 /*
@@ -42,6 +45,9 @@ class Container
              },
              Logout::class => function(){ 
                return new \App\Controller\Logout();
+             },
+             Register::class => function(){ 
+               return new \App\Controller\Register();
              },
 
 

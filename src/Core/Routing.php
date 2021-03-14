@@ -67,6 +67,10 @@ class Routing
             'controller' => 'Logout',
             'method' => 'index',
         ],
+        '/register' => [
+            'controller' => 'Register',
+            'method' => 'index',
+        ],
         
         /*
             utilisation d'une expression rationnelle

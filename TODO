@@ -1,2 +1,4 @@
-Modifier l'url dans login pour que ce soit le bon
-Corriger Login et tous ceux associé pour que ça marche
+Modifier l'affichage de login(mauvais mot de passe ou compte, déjà connecté)
+Faire la redirection de logout vers l'acceuil
+
+Finir Register

@@ -129,5 +129,9 @@ class UserQuery
             return self::VISITOR_INDICATOR;
 
     }
+
+    public function addUser(){
+        
+    }
     
 }
