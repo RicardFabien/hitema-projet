@@ -18,7 +18,7 @@ CREATE TABLE API.game(
 
 
 CREATE TABLE bars (
-  id int(11) NOT NULL,
+  id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   lieu varchar(255) NOT NULL,
   price float NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE bars (
 );
 
 CREATE TABLE bn (
-  id int(11) NOT NULL,
+  id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   lieu varchar(255) NOT NULL,
   price float NOT NULL,
