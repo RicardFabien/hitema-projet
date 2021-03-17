@@ -27,4 +27,24 @@ class AnnoncePage extends AbstractController
     {
         $this->render('Annonce/productPage');
     }
+
+    public function ajoutBars():void
+    {
+        $this->render('Annonce/annonceAjoutBars');
+    }
+    public function ajoutBN():void
+    {
+        $this->render('Annonce/annonceAjoutBN');
+    }
+
+    public function updateBars():void
+    {
+        $this->render('Annonce/annonceUpdateBars');
+    }
+
+    public function updateBN():void
+    {
+        $this->render('Annonce/annonceUpdateBN');
+    }
+
 }

@@ -31,9 +31,41 @@ class Routing
             'controller' => 'Bars',
             'method' => 'showTableBars',
         ],
+        '/annonces/bars/ajouter' => [
+            'controller' => 'AnnoncePage',
+            'method' => 'ajoutBars',
+        ],
+        '/annonces/bars/add' => [
+            'controller' => 'Bars',
+            'method' => 'addBars',
+        ],
+        '/annonces/bars/modifier' => [
+            'controller' => 'AnnoncePage',
+            'method' => 'updateBars',
+        ],
+        '/annonces/bars/update' => [
+            'controller' => 'Bars',
+            'method' => 'update',
+        ],
         '/annonces/BN' => [
             'controller' => 'BN',
             'method' => 'showTableBN',
+        ],
+        '/annonces/BN/ajouter' => [
+            'controller' => 'AnnoncePage',
+            'method' => 'ajoutBN',
+        ],
+        '/annonces/BN/add' => [
+            'controller' => 'BN',
+            'method' => 'addBN',
+        ],
+        '/annonces/BN/modifier' => [
+            'controller' => 'AnnoncePage',
+            'method' => 'updateBN',
+        ],
+        '/annonces/BN/update' => [
+            'controller' => 'BN',
+            'method' => 'update',
         ],
         '/annonces/Produit' => [
             'controller' => 'AnnoncePage',
