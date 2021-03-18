@@ -10,6 +10,7 @@ use App\Model\User;
 use App\Query\UserQuery;
 use App\Service\JWT;
 use App\Controller\Game;
+use App\Query\GameQuery;
 use App\Controller\Login;
 use App\Controller\Logout;
 use App\Controller\BN;

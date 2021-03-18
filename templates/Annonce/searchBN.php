@@ -106,6 +106,8 @@
         <!-- Pagination -->
         <div class="container-md mt">
             <div class="container-md d-flex p-2 bd-highlight row gy-2 justify-content-center">
+                <a href="/annonces/BN/ajouter" class="btn btn-success">Ajouter une annonce</a>
+                <a href="/annonces/BN/modifier" class="btn btn-warning">Modifier une annonce</a>
                 <hr style="max-width: 750px;">
         <?php
             foreach($BN as $BN)
@@ -122,6 +124,7 @@
                                         echo '<p class="card-text">'.$description[0].'...</p>';
                                         echo '<div class="row justify-content-between">';
                                             echo '<small class="text-muted">Localisation : '.$BN['lieu'].'</small></p>';
+                                            echo '<small class="text-muted">Référence : '.$BN['id'].'</small></p>';
                                             echo '<div class="col-4">';
                                                 echo '<small class="text-muted">Créee le '.$BN['date_creation'].'</small></p>';
                                             echo '</div>';
