@@ -16,6 +16,7 @@ use App\Controller\Logout;
 use App\Controller\BN;
 use App\Query\BNQuery;
 use App\Controller\Bars;
+use App\Controller\ContactPage;
 use App\Query\BarsQuery;
 
 use App\Controller\Register;
@@ -46,6 +47,9 @@ class Container
              },
              AnnoncePage::class => function(){ 
                return new \App\Controller\AnnoncePage();
+            },
+            ContactPage::class => function(){ 
+               return new \App\Controller\ContactPage();
             },
              Login::class => function(){ 
                return new \App\Controller\Login();

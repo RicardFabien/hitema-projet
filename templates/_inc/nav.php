@@ -18,7 +18,7 @@
 						À propos	
 					</a>
 					<ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-						<li><a class="dropdown-item bg-dark" href="#" style="color: aliceblue;">Contact</a></li>
+						<li><a class="dropdown-item bg-dark" href="/contact" style="color: aliceblue;">Contact</a></li>
 						<li><hr class="dropdown-divider" style="border-color: darkgreen;"></li>
 						<li><a class="dropdown-item bg-dark" href="#" style="color: aliceblue;">Qui sommes-nous ?</a></li>
 					</ul>

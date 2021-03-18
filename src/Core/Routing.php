@@ -23,6 +23,10 @@ class Routing
             'controller' => 'Homepage',
             'method' => 'index',
         ],
+        '/contact' => [
+            'controller' => 'ContactPage',
+            'method' => 'index',
+        ],
         '/annonces' => [
             'controller' => 'AnnoncePage',
             'method' => 'annoncePage',
