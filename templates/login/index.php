@@ -13,7 +13,7 @@ require_once __DIR__ . '/../_inc/nav.php';
         <div class="container d-flex p-2 bd-highlight justify-content-center">
            
                 <div class="col-lg-7 px-5 pt-5">
-                    <h1>nLife</h1>
+                    <h1 style="color:#017143">nLife</h1>
                     <h4>Connectez vous à votre compte</h4>
                     <form action="/login" method ="POST">
                         <div class="form-row">
@@ -39,7 +39,7 @@ require_once __DIR__ . '/../_inc/nav.php';
         </div>
     </section> 
     <?php } else {?>
-        <p>Vous êtes connecté sous le pseudo <?php echo $_SESSION["password"] ?> </p>
+        <p>Vous êtes connecté sous le pseudo <?php echo $_SESSION["login"] ?> </p>
         <form action="/logout"  method ="POST">
 
             <input type=hidden id="disconnect" name = "disconnect" value = "disconnect"/> 

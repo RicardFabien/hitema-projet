@@ -9,8 +9,8 @@
 				<ul class="list-unstyled text-small">
 				<li><a class="link-secondary" href="/">Accueil</a></li>
 				<li><a class="link-secondary" href="/annonces">Annonces</a></li>
-				<li><a class="link-secondary" href="#">Se connecter</a></li>
-				<li><a class="link-secondary" href="#">S'inscrire</a></li>
+				<li><a class="link-secondary" href="/login">Se connecter</a></li>
+				<li><a class="link-secondary" href="/register">S'inscrire</a></li>
 				</ul>
 			</div>
 			<div class="col-md-2">
