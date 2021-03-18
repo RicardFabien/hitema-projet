@@ -7,7 +7,6 @@ use App\Query\UserQuery;
 require_once __DIR__ . '/../_inc/header.php';
 ?>
     <h1>Se connecter</h1>
-    <img src="./ash-tree.jpg"/>
     <?php if ($level == UserQuery::VISITOR_INDICATOR) { ?>
         <form action="/login" method ="POST">
         
