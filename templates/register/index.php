@@ -8,7 +8,7 @@ require_once __DIR__ . '/../_inc/header.php';
 ?>
     <h1>S'enrengistrer</h1>
     <?php if ($level == UserQuery::VISITOR_INDICATOR) { ?>
-        <form action="/login" method ="POST">
+        <form action="/register" method ="POST">
         
             <label for="login">Pseudo:</label>
             <input type="text" id="login" name="login"><br><br>
@@ -17,6 +17,10 @@ require_once __DIR__ . '/../_inc/header.php';
             <input type="submit" value="Se connecter">
 
         </form> 
+
+        <?php if($alreadyInUse){ ?>
+            <p>Ce compte existe déjà</p>
+        <?php } ?>
     <?php } else {?>
         <p>Vous êtes connecté sous le pseudo <?php echo $_SESSION["password"] ?>, veuillez vous déconnecter </p>
         <form action="/logout"  method ="POST">

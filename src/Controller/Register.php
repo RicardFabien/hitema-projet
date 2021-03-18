@@ -10,8 +10,18 @@ class Register extends AbstractController
 
     public function index():void
     {
-        $userLevel =  Container::getInstance(UserQuery::class)->getStoredUserLevel();
+
         $alreadyInUse = false;
+
+        if(isset($_POST["login"]) &&  isset($_POST["password"])){
+            $login = $_POST["login"];
+            $password = $_POST["password"];
+            $alreadyInUse = !Container::getInstance(UserQuery::class)->addUser($login,$password);
+
+        }
+            
+        $userLevel =  Container::getInstance(UserQuery::class)->getStoredUserLevel();
+        
 
 
 

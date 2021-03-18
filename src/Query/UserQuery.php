@@ -130,8 +130,31 @@ class UserQuery
 
     }
 
-    public function addUser(){
-        
+    public function addUser(String $login, String $password):bool{
+
+        if($this->findOneBy(["login" => $login]))
+            return false;
+
+        $treatedPassword = password_hash($password, PASSWORD_ARGON2I);
+
+        $sql = "INSERT INTO API.user
+        VALUE ( NULL, :login, :password,:level )";
+
+        $query = $this->connection->prepare($sql);
+
+        $args = [
+            "login" => $login,
+            "password" => $treatedPassword,
+            "level" => self::USER_INDICATOR
+        ];
+
+        $query->execute($args);
+
+        $_SESSION["login"] = $login;
+        $_SESSION["password"] = $password;
+
+        return true;
+
     }
     
 }
