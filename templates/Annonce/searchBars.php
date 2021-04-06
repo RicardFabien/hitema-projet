@@ -2,6 +2,8 @@
 	require_once __DIR__ . '/../_inc/header.php';		
 	require_once __DIR__ . '/../_inc/nav.php';
 
+    use App\Query\UserQuery;
+
 ?>
 <style>
     .carousel-item {
@@ -106,9 +108,13 @@
         <!-- Pagination -->    
         <div class="container-md mt">
             <div class="container-md d-flex p-2 bd-highlight row gy-2 justify-content-center">
+            <?php if ($level == UserQuery::HOST_INDICATOR || $level == UserQuery::ADMIN_INDICATOR) { ?>
+
                 <a href="/annonces/bars/ajouter" class="btn btn-success">Ajouter une annonce</a>
                 <a href="/annonces/bars/modifier" class="btn btn-warning">Modifier une annonce</a>
                 <hr style="max-width: 750px;">
+
+            <?php } ?>
         <?php
             foreach($Bars as $Bars)
             {

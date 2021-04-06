@@ -11,10 +11,13 @@ class BN extends AbstractController
 {
     public function showTableBN():void
     {
+      $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
+
          $BNQuery = Container::getInstance(BNQuery::class);
          $BN = $BNQuery->findAll();
          $this->render('Annonce/searchBN', [
                'BN' => $BN,
+               "level" => $userLevel
          ]);
     }
 

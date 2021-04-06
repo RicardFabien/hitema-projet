@@ -6,6 +6,7 @@ use App\Core\Database;
 use App\Query\BarsQuery;
 use PDO;
 use App\Core\Container;
+use App\Query\UserQuery;
 
 class Bars extends AbstractController
 {
@@ -13,8 +14,12 @@ class Bars extends AbstractController
     {
          $BarsQuery = Container::getInstance(BarsQuery::class);
          $Bars = $BarsQuery->findAll();
+
+         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
+
          $this->render('Annonce/searchBars', [
                'Bars' => $Bars,
+               "level" => $userLevel,
          ]);
     }
 
