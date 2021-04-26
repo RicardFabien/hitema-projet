@@ -25,15 +25,25 @@ class Bars extends AbstractController
 
     public function addBars()
     {
-      $gameQuery = Container::getInstance(BarsQuery::class);
-      $gameQuery->insertOne($_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description']);
+      $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
+
+      if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
+        $gameQuery = Container::getInstance(BarsQuery::class);
+        $gameQuery->insertOne($_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description']);
+      }
+      
       header('location: /annonces/bars');
     }
 
     public function update()
     {
-      $gameQuery = Container::getInstance(BarsQuery::class);
-      $gameQuery->ModifOne($_POST['id'], $_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description']);
+
+      $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
+
+      if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
+        $gameQuery = Container::getInstance(BarsQuery::class);
+        $gameQuery->ModifOne($_POST['id'], $_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description']);
+      }
       header('location: /annonces/bars');
     }
 

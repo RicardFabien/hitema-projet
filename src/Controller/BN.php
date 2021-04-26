@@ -6,6 +6,7 @@ use App\Core\Database;
 use App\Query\BNQuery;
 use PDO;
 use App\Core\Container;
+use App\Query\UserQuery;
 
 class BN extends AbstractController
 {
@@ -23,15 +24,23 @@ class BN extends AbstractController
 
     public function addBN()
     {
-      $gameQuery = Container::getInstance(BNQuery::class);
-      $gameQuery->insertOne($_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description']);
+      $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
+
+      if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
+        $gameQuery = Container::getInstance(BNQuery::class);
+        $gameQuery->insertOne($_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description']);
+      }
       header('location: /annonces/BN');
     }
 
     public function update()
     {
-      $gameQuery = Container::getInstance(BNQuery::class);
-      $gameQuery->ModifOne($_POST['id'], $_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description']);
+      $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
+
+      if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
+        $gameQuery = Container::getInstance(BNQuery::class);
+        $gameQuery->ModifOne($_POST['id'], $_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description']);
+      }
       header('location: /annonces/BN');
     }
 }
