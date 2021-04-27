@@ -123,6 +123,10 @@ class Routing
             'controller' => 'Register',
             'method' => 'index',
         ],
+        'payment' => [
+            'controller' => 'Payment',
+            'method' => 'index'
+        ]
         
         /*
             utilisation d'une expression rationnelle
