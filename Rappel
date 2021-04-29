@@ -5,6 +5,7 @@ Variable de $_Post :
 password (password que l'utilisateur à rentré)
 login (login que l'utilisateur à rentré)
 
+Pour le payement, on donne le type(type) qui est "bar" ou "bn" et l'id (id)
 
 
 

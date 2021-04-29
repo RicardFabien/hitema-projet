@@ -17,6 +17,7 @@ use App\Controller\BN;
 use App\Query\BNQuery;
 use App\Controller\Bars;
 use App\Controller\ContactPage;
+use App\Controller\Payment;
 use App\Query\BarsQuery;
 
 use App\Controller\Register;
@@ -59,6 +60,9 @@ class Container
              },
              Register::class => function(){ 
                return new \App\Controller\Register();
+             },
+             Payment::class => function(){ 
+               return new \App\Controller\Payment();
              },
             BN::class => function(){ 
                return new \App\Controller\BN();

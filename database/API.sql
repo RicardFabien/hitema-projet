@@ -2,20 +2,12 @@ DROP DATABASE IF EXISTS API;
 
 CREATE DATABASE API;
 
-CREATE TABLE API.user(
-    id TINYINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE App_user(
+    id INT PRIMARY KEY AUTO_INCREMENT,
     login VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
     level VARCHAR(7) NOT NULL
 );
-
-CREATE TABLE API.game(
-  id tinyint(3) UNSIGNED NOT NULL,
-  name varchar(50) NOT NULL,
-  console varchar(100) NOT NULL,
-  price float NOT NULL
-); 
-
 
 CREATE TABLE bars (
   id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -26,7 +18,7 @@ CREATE TABLE bars (
   description varchar(10000) NOT NULL
 );
 
-CREATE TABLE bn (
+CREATE TABLE boites_de_nuits (
   id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   lieu varchar(255) NOT NULL,
@@ -35,6 +27,23 @@ CREATE TABLE bn (
   description varchar(10000) NOT NULL
 );
 
+CREATE TABLE Location_salle (
+	location_Id INT auto_increment NOT NULL,
+	User_Id INT NOT NULL,
+	bar_Id INT,
+  bn_Id INT,
+  price FLOAT  NOT NULL,
+	locationDebut DATETIME NOT NULL,
+	locationFin DATETIME NOT NULL,
+	CONSTRAINT Location_PK PRIMARY KEY (location_Id),
+  CONSTRAINT Location_FK FOREIGN KEY (User_Id) REFERENCES App_user(id),
+	CONSTRAINT Location_FK_1 FOREIGN KEY (bar_Id) REFERENCES bars(id),
+  CONSTRAINT Location_FK_2 FOREIGN KEY (bn_Id) REFERENCES boites_de_nuits(id)
+);
+
 -- hachage du mot de passe : algorithme argon2
 INSERT INTO API.user
 VALUE ( NULL, 'admin', '$argon2i$v=19$m=16,t=2,p=1$bWVGVkRJNVljczVLbjJUcQ$kpHdZUT8h+851aKEVnmWGw','admin' );
+
+INSERT INTO bars
+VALUE(NULL,"Le bar","Paris",10,CURRENT_DATE(),"Un bar tout ce qu'il y a de plus normal");

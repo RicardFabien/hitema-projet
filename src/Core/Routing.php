@@ -123,7 +123,7 @@ class Routing
             'controller' => 'Register',
             'method' => 'index',
         ],
-        'payment' => [
+        '/payment' => [
             'controller' => 'Payment',
             'method' => 'index'
         ]
