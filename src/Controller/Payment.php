@@ -11,12 +11,16 @@ class Payment extends AbstractController
     {
         $url = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 
-       $parts = parse_url($url);
-       parse_str($parts['query'], $query);
+        $locationData = false;
 
+        if(isset($_GET['type']) && isset($_GET['id'])){
+            
+        }
+
+       $userLevel =  Container::getInstance(UserQuery::class)->getStoredUserLevel();
 
     
-        $this->render('payment/index',[]);
+        $this->render('payment/index',["level" => $userLevel,"locationData" => $locationData]);
     }
 
     public function process(): void{

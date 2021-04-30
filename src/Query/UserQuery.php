@@ -3,7 +3,7 @@
 namespace App\Query;
 
 use App\Core\Database;
-use App\Model\User;
+use App\Model\App_User;
 use App\Utils\StringUtils;
 use PDO;
 
@@ -35,13 +35,14 @@ class UserQuery
     }
 
     // requête des conditions sur les valeurs des colonnes
-    // select user.* from api.user where user.login = 'admin';
-    public function findOneBy(array $args = []):User|bool
+    // select user.* from App_user where user.login = 'admin';
+    public function findOneBy(array $args = []):App_user|bool
     {
         // requête 
         $sql = '
-            SELECT user.*
-            FROM API.user
+            SELECT 
+            App_user.*
+            FROM App_user
             WHERE 
         ';
 
@@ -52,7 +53,7 @@ class UserQuery
         foreach($args as $column => $value)
         {
             $sql .= "
-                user.$column = :$column
+                App_user.$column = :$column
             ";
         }
 
@@ -70,7 +71,7 @@ class UserQuery
                 fetchObject : permet d'associer les données à un modèle
                 fetchAll : récupérer plusieurs résultats
         */
-        $result = $query->fetchObject(User::class);
+        $result = $query->fetchObject(App_user::class);
 
         // retour des résultats 
         return $result;
@@ -137,7 +138,7 @@ class UserQuery
 
         $treatedPassword = password_hash($password, PASSWORD_ARGON2I);
 
-        $sql = "INSERT INTO API.user
+        $sql = "INSERT INTO App_user
         VALUE ( NULL, :login, :password,:level )";
 
         $query = $this->connection->prepare($sql);

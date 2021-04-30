@@ -2,12 +2,15 @@
 
 namespace App\Query;
 
+
 use PDO;
 use App\Model\Bars;
 use App\Core\Database;
 
+
 class BarsQuery
 {
+    public $BAR_INDICATOR = 'bar';
     private PDO $connection;
 
     public function __construct(Database $database)
@@ -46,6 +49,47 @@ class BarsQuery
                 fetchAll : récupérer plusieurs résultats
         */
         $result = $query->fetchAll();
+
+        // retour des résultats 
+        return $result;
+    }
+
+    public function findOneBy(array $args = []):Bars|bool
+    {
+        // requête 
+        $sql = '
+            SELECT 
+            API.Bars.*
+            FROM App_user
+            WHERE 
+        ';
+
+        /*
+            requête préparée
+            création de variables dans la requête avec :
+        */
+        foreach($args as $column => $value)
+        {
+            $sql .= "
+                App_user.$column = :$column
+            ";
+        }
+
+        $sql .= ';';
+
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute($args);
+
+        /*
+            récupération des résultats
+                fetchObject : permet d'associer les données à un modèle
+                fetchAll : récupérer plusieurs résultats
+        */
+        $result = $query->fetchObject(Bars::class);
 
         // retour des résultats 
         return $result;
