@@ -41,6 +41,27 @@ CREATE TABLE Location_salle (
   CONSTRAINT Location_FK_2 FOREIGN KEY (bn_Id) REFERENCES boites_de_nuit(id)
 );
 
+CREATE TABLE comments_bars (
+  comment_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  comment_description varchar(2500) NOT NULL,
+  reviews INT NOT NULL,
+  User_id INT NOT NULL,
+  Bars_id INT NOT NULL,
+  FOREIGN KEY (User_Id) REFERENCES API.app_user(id),
+  FOREIGN KEY (Bars_id) REFERENCES API.bars(id)
+);
+
+CREATE TABLE comments_boites_de_nuit (
+  comment_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  comment_description varchar(2500) NOT NULL,
+  reviews INT NOT NULL,
+  User_id INT NOT NULL,
+  boites_de_nuit_id INT NOT NULL,
+  FOREIGN KEY (User_Id) REFERENCES API.app_user(id),
+  FOREIGN KEY (boites_de_nuit_id) REFERENCES API.boites_de_nuit(id)
+);
+
+
 -- hachage du mot de passe : algorithme argon2
 INSERT INTO App_user
 VALUE ( NULL, 'admin', '$argon2i$v=19$m=16,t=2,p=1$bWVGVkRJNVljczVLbjJUcQ$kpHdZUT8h+851aKEVnmWGw','admin' );
