@@ -6,10 +6,11 @@ use PDO;
 use App\Model\BN;
 use App\Core\Database;
 
+
 class BNQuery
 {
-    public $BN_INDICATOR = 'bn';
 
+    public const BN_INDICATOR = 'bn';
     private PDO $connection;
 
     public function __construct(Database $database)
@@ -18,12 +19,12 @@ class BNQuery
         $this->connection = $database->connect();
     }
 
-    public function findOneBy(array $args = []):Bars|bool
+    public function findOneBy(array $args = []):BN|bool
     {
         // requête 
         $sql = '
             SELECT 
-            API.Bars.*
+            API.boites_de_nuit.*
             FROM App_user
             WHERE 
         ';
@@ -64,7 +65,7 @@ class BNQuery
         // requête 
         $sql = '
             SELECT *
-            FROM API.BN
+            FROM API.boites_de_nuit
         ';
 
         /*
@@ -97,7 +98,7 @@ class BNQuery
     public function insertOne(String $name, String $lieu, float $price, String $description)
     {
         
-        $sql = "INSERT INTO API.BN
+        $sql = "INSERT INTO API.boites_de_nuit
                     VALUES ('null', :name, :lieu, :price, NOW(), :description )";
         
         // préparation de la requête
@@ -117,7 +118,7 @@ class BNQuery
     {
         // requête 
         $sql = '
-            UPDATE API.BN
+            UPDATE API.boites_de_nuit
                 SET name = :name, lieu = :lieu, price = :price, date_creation = NOW(), description = :description
             WHERE id = :id
         ';
@@ -147,7 +148,7 @@ class BNQuery
     {
         // requête 
         $sql = '
-            DELETE FROM API.BN WHERE id= :id
+            DELETE FROM API.boites_de_nuit WHERE id= :id
         ';
 
         $sql .= ';';

@@ -12,8 +12,9 @@ require_once __DIR__ . '/../_inc/nav.php';
         Vous n'êtes pas connecté
     <?php } else if (!isset($locationData) || $locationData === false ) { ?>
         Cette salle n'existe pas
-    <?php } else { ?>
+    <?php } else if(isset($locationData) || $locationData !== false) { ?>
         <form>
+            <?php var_dump($locationData) ?>
             <input type = text></input>
             <select><?php for($i = 0; $i < 12;$i = $i + 1){ ?>
                 <option> <?php echo ($i+1)?></option>

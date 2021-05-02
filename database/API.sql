@@ -18,7 +18,7 @@ CREATE TABLE bars (
   description varchar(10000) NOT NULL
 );
 
-CREATE TABLE boites_de_nuits (
+CREATE TABLE boites_de_nuit (
   id int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   lieu varchar(255) NOT NULL,
@@ -38,11 +38,11 @@ CREATE TABLE Location_salle (
 	CONSTRAINT Location_PK PRIMARY KEY (location_Id),
   CONSTRAINT Location_FK FOREIGN KEY (User_Id) REFERENCES App_user(id),
 	CONSTRAINT Location_FK_1 FOREIGN KEY (bar_Id) REFERENCES bars(id),
-  CONSTRAINT Location_FK_2 FOREIGN KEY (bn_Id) REFERENCES boites_de_nuits(id)
+  CONSTRAINT Location_FK_2 FOREIGN KEY (bn_Id) REFERENCES boites_de_nuit(id)
 );
 
 -- hachage du mot de passe : algorithme argon2
-INSERT INTO API.user
+INSERT INTO App_user
 VALUE ( NULL, 'admin', '$argon2i$v=19$m=16,t=2,p=1$bWVGVkRJNVljczVLbjJUcQ$kpHdZUT8h+851aKEVnmWGw','admin' );
 
 INSERT INTO bars

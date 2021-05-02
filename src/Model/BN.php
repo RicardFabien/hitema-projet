@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Model;
+
 class BN
 {
     private int $id;

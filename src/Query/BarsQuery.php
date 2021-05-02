@@ -10,7 +10,9 @@ use App\Core\Database;
 
 class BarsQuery
 {
-    public $BAR_INDICATOR = 'bar';
+
+    public const BAR_INDICATOR = 'bar';
+ 
     private PDO $connection;
 
     public function __construct(Database $database)
@@ -71,7 +73,7 @@ class BarsQuery
         foreach($args as $column => $value)
         {
             $sql .= "
-                App_user.$column = :$column
+                Bars.$column = :$column
             ";
         }
 
