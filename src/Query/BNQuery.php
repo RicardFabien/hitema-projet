@@ -36,7 +36,7 @@ class BNQuery
         foreach($args as $column => $value)
         {
             $sql .= "
-                App_user.$column = :$column
+                boites_de_nuit.$column = :$column
             ";
         }
 
@@ -54,7 +54,7 @@ class BNQuery
                 fetchObject : permet d'associer les données à un modèle
                 fetchAll : récupérer plusieurs résultats
         */
-        $result = $query->fetchObject(Bars::class);
+        $result = $query->fetchObject(BN::class);
 
         // retour des résultats 
         return $result;
@@ -168,6 +168,29 @@ class BNQuery
         return $result;
     }
 
+    public function FindOne(int $id)
+    {
+        // requête 
+        $sql = '
+            SELECT * FROM API.boites_de_nuit WHERE id= :id
+        ';
+
+        $sql .= ';';
+
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute([
+            'id' => $id
+        ]);
+
+        $result = $query->fetchAll();
+
+        // retour des résultats 
+        return $result;
+    }
     
 
 

@@ -71,9 +71,13 @@ class Routing
             'controller' => 'BN',
             'method' => 'update',
         ],
-        '/annonces/Produit/(?<id>\d+)' => [
+        '/annonces/Bars/(?<id>\d+)' => [
             'controller' => 'AnnoncePage',
-            'method' => 'productPage',
+            'method' => 'BarsProductPage',
+        ],
+        '/annonces/BN/(?<id>\d+)' => [
+            'controller' => 'AnnoncePage',
+            'method' => 'BNProductPage',
         ],
         '/auth' => [
             'controller' => 'Authentication',

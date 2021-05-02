@@ -134,7 +134,7 @@
                                                 echo '<small class="text-muted">Créee le '.$BN['date_creation'].'</small></p>';
                                             echo '</div>';
                                             echo '<div class="col-4">';
-                                                echo '<a class="btn btn-outline-success me-2" type="button" href="/annonces/Produit">Voir l\'annonce</a>';
+                                                echo '<a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'.$BN['id'].'">Voir l\'annonce</a>';
                                             echo '</div>';
                                         echo '</div>';
                                     echo '</div>';
