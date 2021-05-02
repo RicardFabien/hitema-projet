@@ -71,7 +71,7 @@ class Routing
             'controller' => 'BN',
             'method' => 'update',
         ],
-        '/annonces/Produit' => [
+        '/annonces/Produit/(?<id>\d+)' => [
             'controller' => 'AnnoncePage',
             'method' => 'productPage',
         ],
@@ -166,7 +166,7 @@ class Routing
                 - chaîne de caractères à tester
                 - récupération des groupes
             */
-            if(preg_match("#^^$regexp$#", $uri, $groups))
+            if(preg_match("#^$regexp$#", $uri, $groups))
             {
                 $result = $infos;
                 $result['vars'] = $groups;

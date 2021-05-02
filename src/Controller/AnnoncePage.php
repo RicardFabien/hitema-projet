@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Core\Container;
 use App\Query\UserQuery;
+use App\Query\BarsQuery;
 
 class AnnoncePage extends AbstractController
 {
@@ -30,11 +31,21 @@ class AnnoncePage extends AbstractController
         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
         $this->render('Annonce/searchBN',["level" => $userLevel]);
     }
-    public function productPage():void
+    public function productPage(array $data = []):void
     {
+        $BarsQuery = Container::getInstance(BarsQuery::class);
+        $id = $data["id"];
+        $Bars = $BarsQuery->FindOne($id);
+
         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
-        $this->render('Annonce/productPage',["level" => $userLevel]);
+
+        $this->render('Annonce/productPage',[
+            "id" => $id,
+            'Bars' => $Bars,
+            "level" => $userLevel
+            ]);
     }
+
 
     public function ajoutBars():void
     {

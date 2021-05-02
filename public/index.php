@@ -58,6 +58,6 @@ $controller = Container::getInstance($controllerName);
 // ... spread operator : permet de convertir des tableaux associatifs en arguments
 // [ 'id' => 50] > id=50,
 
-$controller->{$routeInfos['method']}( ...$routeInfos['vars'] );
+$controller->{$routeInfos['method']}($routeInfos['vars'] );
 
 

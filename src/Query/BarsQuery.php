@@ -170,6 +170,29 @@ class BarsQuery
         return $result;
     }
 
+    public function FindOne(int $id)
+    {
+        // requête 
+        $sql = '
+            SELECT * FROM API.Bars WHERE id= :id
+        ';
+
+        $sql .= ';';
+
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute([
+            'id' => $id
+        ]);
+
+        $result = $query->fetchAll();
+
+        // retour des résultats 
+        return $result;
+    }
     
 
 
