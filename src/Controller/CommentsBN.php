@@ -22,7 +22,7 @@ class CommentsBN extends AbstractController
          ]);
     }
 
-    public function addCommentsCommentsBN()
+    public function addCommentsBN()
     {
       $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
 
@@ -30,7 +30,7 @@ class CommentsBN extends AbstractController
         $gameQuery = Container::getInstance(CommentsBNQuery::class);
         $gameQuery->insertOne($_POST['description'], $_POST['reviews'], $_SESSION["login"], $_POST['boites_de_nuit_id']);
       }
-      header('location: /annonces/CommentsBN');
+      header('location: /annonces/BN');
     }
 
     public function update()

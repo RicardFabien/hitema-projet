@@ -79,6 +79,10 @@ class Routing
             'controller' => 'AnnoncePage',
             'method' => 'BNProductPage',
         ],
+        '/annonces/CommentsBN/add' => [
+            'controller' => 'CommentsBN',
+            'method' => 'addCommentsBN',
+        ],
         '/auth' => [
             'controller' => 'Authentication',
             'method' => 'index',

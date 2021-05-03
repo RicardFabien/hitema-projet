@@ -59,7 +59,7 @@ class CommentsBNQuery
     {
         
         $sql = "INSERT INTO API.comments_boites_de_nuit
-                    VALUES ('null', :description, :reviews, :user,:BN_id, NOW())";
+                    VALUES ('null', :description, :reviews, :user, :BN_id, NOW())";
         
         // préparation de la requête
         $query = $this->connection->prepare($sql);
@@ -67,11 +67,10 @@ class CommentsBNQuery
         // exécution de la requête
         // donner des valeurs aux variables de requête avec un array associatif
         $query->execute([
-            'name' => $name,
-            'lieu' => $lieu,
-            'price' => $price,
             'description' => $description,
-            'user' => $user
+            'reviews' => $reviews,
+            'user' => $user,
+            'BN_id' => $BN_id,
         ]);
     }
 

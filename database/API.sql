@@ -49,20 +49,22 @@ CREATE TABLE comments_bars (
   comment_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   comment_description varchar(2500) NOT NULL,
   reviews INT NOT NULL,
-  user INT NOT NULL,
+  user VARCHAR(50) NOT NULL,
   Bars_id INT NOT NULL,
-  FOREIGN KEY (user) REFERENCES API.app_user(id),
-  FOREIGN KEY (Bars_id) REFERENCES API.bars(id)
+  FOREIGN KEY (user) REFERENCES API.app_user(login),
+  FOREIGN KEY (Bars_id) REFERENCES API.bars(id),
+  date_creation date NOT NULL
 );
 
 CREATE TABLE comments_boites_de_nuit (
   comment_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   comment_description varchar(2500) NOT NULL,
   reviews INT NOT NULL,
-  user INT NOT NULL,
+  user VARCHAR(50) NOT NULL,
   boites_de_nuit_id INT NOT NULL,
-  FOREIGN KEY (user) REFERENCES API.app_user(id),
-  FOREIGN KEY (boites_de_nuit_id) REFERENCES API.boites_de_nuit(id)
+  FOREIGN KEY (user) REFERENCES API.app_user(login),
+  FOREIGN KEY (boites_de_nuit_id) REFERENCES API.boites_de_nuit(id),
+  date_creation date NOT NULL
 );
 
 

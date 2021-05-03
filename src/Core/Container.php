@@ -16,12 +16,15 @@ use App\Controller\Logout;
 use App\Controller\BN;
 use App\Query\BNQuery;
 use App\Controller\Bars;
+use App\Controller\CommentsBN;
 use App\Controller\ContactPage;
 use App\Controller\Payment;
 use App\Query\BarsQuery;
-
 use App\Controller\Register;
+use App\Model\App_user;
+use App\Query\CommentsBNQuery;
 
+require_once __DIR__ ."/../Query/CommentsBNQuerry.php";
 /*
     Conteneurs d'instances des classes utilisées dans l'application cette classe renvoie les instances
 */
@@ -80,6 +83,14 @@ class Container
                   self::getInstance(Database::class),
                );
             },
+            CommentsBN::class => function(){ 
+               return new \App\Controller\CommentsBN();
+            },
+            CommentsBNQuery::class => function(){ 
+               return new \App\Query\CommentsBNQuery(
+                  self::getInstance(Database::class),
+               );
+            },
              Routing::class => function(){ 
                 return new \App\Core\Routing();
              },
@@ -99,8 +110,8 @@ class Container
              Dotenv::class => function(){
                 return new \App\Core\Dotenv();
              },
-             User::class => function(){
-                return new \App\Model\User();
+             App_user::class => function(){
+                return new \App\Model\App_user();
              }, 
              UserQuery::class => function(){
                 return new \App\Query\UserQuery(
