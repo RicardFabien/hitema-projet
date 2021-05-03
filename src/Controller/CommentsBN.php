@@ -3,34 +3,34 @@
 namespace App\Controller;
 
 use App\Core\Database;
-use App\Query\BNQuery;
+use App\Query\CommentsBNQuery;
 use PDO;
 use App\Core\Container;
 use App\Query\UserQuery;
 
-class BN extends AbstractController
+class CommentsBN extends AbstractController
 {
-    public function showTableBN():void
+    public function showTableCommentsBN():void
     {
       $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
 
-         $BNQuery = Container::getInstance(BNQuery::class);
-         $BN = $BNQuery->findAll();
-         $this->render('Annonce/searchBN', [
-               'BN' => $BN,
+         $CommentsBNQuery = Container::getInstance(CommentsBNQuery::class);
+         $CommentsBN = $CommentsBNQuery->findAll();
+         $this->render('Annonce/searchCommentsBN', [
+               'CommentsBN' => $CommentsBN,
                "level" => $userLevel
          ]);
     }
 
-    public function addBN()
+    public function addCommentsCommentsBN()
     {
       $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
 
       if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
-        $gameQuery = Container::getInstance(BNQuery::class);
-        $gameQuery->insertOne($_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description'], $_SESSION["login"]);
+        $gameQuery = Container::getInstance(CommentsBNQuery::class);
+        $gameQuery->insertOne($_POST['description'], $_POST['reviews'], $_SESSION["login"], $_POST['boites_de_nuit_id']);
       }
-      header('location: /annonces/BN');
+      header('location: /annonces/CommentsBN');
     }
 
     public function update()
@@ -38,9 +38,9 @@ class BN extends AbstractController
       $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
 
       if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
-        $gameQuery = Container::getInstance(BNQuery::class);
+        $gameQuery = Container::getInstance(CommentsBNQuery::class);
         $gameQuery->ModifOne($_POST['id'], $_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description']);
       }
-      header('location: /annonces/BN');
+      header('location: /annonces/CommentsBN');
     }
 }

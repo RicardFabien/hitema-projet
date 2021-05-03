@@ -18,6 +18,7 @@
               <h4>Prix : '.$BN['price'].' €</h4>
               <p class="card-text">'.$BN['description'].'</p>
               <p class="card-text">'.$BN['date_creation'].'</p>
+              <p class="card-text">'.$BN['user'].'</p>
               <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
               4.0 stars
             </div>

@@ -18,6 +18,7 @@
               <h4>Prix : '.$Bars['price'].' €</h4>
               <p class="card-text">'.$Bars['description'].'</p>
               <p class="card-text">'.$Bars['date_creation'].'</p>
+              <p class="card-text">'.$Bars['user'].'</p>
               <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
               4.0 stars
             </div>

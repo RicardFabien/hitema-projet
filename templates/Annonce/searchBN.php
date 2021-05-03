@@ -131,7 +131,7 @@
                                             echo '<small class="text-muted">Localisation : '.$BN['lieu'].'</small></p>';
                                             echo '<small class="text-muted">Référence : '.$BN['id'].'</small></p>';
                                             echo '<div class="col-4">';
-                                                echo '<small class="text-muted">Créee le '.$BN['date_creation'].'</small></p>';
+                                                echo '<small class="text-muted">Créee le '.$BN['date_creation'].' <br>Par '.$BN['user'].' </small></p>';
                                             echo '</div>';
                                             echo '<div class="col-4">';
                                                 echo '<a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'.$BN['id'].'">Voir l\'annonce</a>';

@@ -13,14 +13,14 @@
     <form method="post" action="/annonces/bars/add">
    
         <div class="mb-3">
-            <label class="form-label">Titre</label>
+            <br><label class="form-label">Titre</label>
             <input type="text" class="form-control " placeholder="Nom de l'annonce" name="name" required>
         </div>
         <div class="row">
             <div class="col-sm me-2">
-                <label for="exampleInputPassword1" class="form-label">Ville</label>
+                <label for="exampleInputPassword1" class="form-label">Département</label>
                 <select class="form-select form-select-lg mb-3 " name="lieu" >
-                    <option selected>Ville</option>
+                    <option selected>Département</option>
                     <option value="Essonne">Essonne</option>
                     <option value="Hauts-de-Seine">Hauts-de-Seine</option>
                     <option value="Paris">Paris</option>
@@ -30,6 +30,8 @@
                     <option value="Val-d'Oise">Val-d'Oise</option>
                     <option value="Yvelines">Yvelines</option>
                 </select>
+                
+                
 
             </div>
             <div class="col-sm">
@@ -39,7 +41,7 @@
         </div>
         <div class="mb-3 mt-2">
             <label for="exampleInputEmail1" class="form-label">Description</label>
-            <textarea type="email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" name="description" placeholder="Description de l'annonce"></textarea>
+            <textarea type="text" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" name="description" placeholder="Description de l'annonce"></textarea>
         </div>
         <button type="submit" class="btn btn-success mt-2">Ajouter l'annonce</button>
     </form>

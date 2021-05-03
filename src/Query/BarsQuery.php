@@ -97,11 +97,11 @@ class BarsQuery
         return $result;
     }
 
-    public function insertOne(String $name, String $lieu, float $price, String $description)
+    public function insertOne(String $name, String $lieu, float $price, String $description, String $user)
     {
         
         $sql = "INSERT INTO API.Bars
-                    VALUES ('null', :name, :lieu, :price, NOW(), :description )";
+                    VALUES ('null', :name, :lieu, :price, NOW(), :description, :user )";
         
         // préparation de la requête
         $query = $this->connection->prepare($sql);
@@ -113,6 +113,7 @@ class BarsQuery
             'lieu' => $lieu,
             'price' => $price,
             'description' => $description,
+            'user' => $user
         ]);
     }
 

@@ -15,7 +15,9 @@ CREATE TABLE bars (
   lieu varchar(255) NOT NULL,
   price float NOT NULL,
   date_creation date NOT NULL,
-  description varchar(10000) NOT NULL
+  description varchar(10000) NOT NULL,
+  user VARCHAR(50) NOT NULL,
+  FOREIGN KEY (user) REFERENCES API.app_user(login)
 );
 
 CREATE TABLE boites_de_nuit (
@@ -24,7 +26,9 @@ CREATE TABLE boites_de_nuit (
   lieu varchar(255) NOT NULL,
   price float NOT NULL,
   date_creation date NOT NULL,
-  description varchar(10000) NOT NULL
+  description varchar(10000) NOT NULL,
+  user VARCHAR(50) NOT NULL,
+  FOREIGN KEY (user) REFERENCES API.app_user(login)
 );
 
 CREATE TABLE Location_salle (
@@ -45,9 +49,9 @@ CREATE TABLE comments_bars (
   comment_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   comment_description varchar(2500) NOT NULL,
   reviews INT NOT NULL,
-  User_id INT NOT NULL,
+  user INT NOT NULL,
   Bars_id INT NOT NULL,
-  FOREIGN KEY (User_Id) REFERENCES API.app_user(id),
+  FOREIGN KEY (user) REFERENCES API.app_user(id),
   FOREIGN KEY (Bars_id) REFERENCES API.bars(id)
 );
 
@@ -55,9 +59,9 @@ CREATE TABLE comments_boites_de_nuit (
   comment_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   comment_description varchar(2500) NOT NULL,
   reviews INT NOT NULL,
-  User_id INT NOT NULL,
+  user INT NOT NULL,
   boites_de_nuit_id INT NOT NULL,
-  FOREIGN KEY (User_Id) REFERENCES API.app_user(id),
+  FOREIGN KEY (user) REFERENCES API.app_user(id),
   FOREIGN KEY (boites_de_nuit_id) REFERENCES API.boites_de_nuit(id)
 );
 

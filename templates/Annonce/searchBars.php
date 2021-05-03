@@ -132,7 +132,7 @@
                                             echo '<small class="text-muted">Localisation : '.$Bars['lieu'].'</small></p>';
                                             echo '<small class="text-muted">Référence : '.$Bars['id'].'</small></p>';
                                             echo '<div class="col-4">';
-                                                echo '<small class="text-muted">Créee le '.$Bars['date_creation'].'</small></p>';
+                                                echo '<small class="text-muted">Créee le '.$Bars['date_creation'].' <br>Par '.$Bars['user'].' </small></p>';
                                             echo '</div>';
                                             echo '<div class="col-4">';
                                                 echo '<a class="btn btn-outline-success me-2" type="button" href="/annonces/Bars/'.$Bars['id'].'">Voir l\'annonce</a>';

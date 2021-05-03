@@ -95,11 +95,11 @@ class BNQuery
         return $result;
     }
 
-    public function insertOne(String $name, String $lieu, float $price, String $description)
+    public function insertOne(String $name, String $lieu, float $price, String $description, String $user)
     {
         
         $sql = "INSERT INTO API.boites_de_nuit
-                    VALUES ('null', :name, :lieu, :price, NOW(), :description )";
+                    VALUES ('null', :name, :lieu, :price, NOW(), :description, :user )";
         
         // préparation de la requête
         $query = $this->connection->prepare($sql);
@@ -111,6 +111,7 @@ class BNQuery
             'lieu' => $lieu,
             'price' => $price,
             'description' => $description,
+            'user' => $user
         ]);
     }
 
