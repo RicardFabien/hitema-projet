@@ -83,6 +83,10 @@ class Routing
             'controller' => 'CommentsBN',
             'method' => 'addCommentsBN',
         ],
+        '/annonces/CommentsBars/add' => [
+            'controller' => 'CommentsBars',
+            'method' => 'addCommentsBars',
+        ],
         '/auth' => [
             'controller' => 'Authentication',
             'method' => 'index',
