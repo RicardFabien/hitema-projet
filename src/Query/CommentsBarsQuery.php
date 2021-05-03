@@ -20,12 +20,12 @@ class CommentsBarsQuery
     }
 
 
-    public function findAll()
+    public function FindCommentsByBars(int $id)
     {
         // requête 
         $sql = '
             SELECT *
-            FROM API.comments_bars
+            FROM API.comments_bars WHERE Bars_id ='.$id.'
         ';
 
         /*

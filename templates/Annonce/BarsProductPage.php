@@ -34,15 +34,38 @@
             Avis
           </div>
           <div class="card-body">
-            <p>Endroit chaleureux, super service !</p>
-            <small class="text-muted">Commentaires de Pierre écrit le 13/03/21</small>
-            <hr>
-            <p>Service top pour 50 personnes, je conseille.</p>
-            <small class="text-muted">Commentaires de Estelle écrit le 01/03/21</small>
-            <hr>
-            <p>Prestation sans plus, serveur désagréable par moments.</p>
-            <small class="text-muted">Commentaires de Eva écrit le 02/02/21</small>
-            <hr>
+          <?php
+          if ($Comments != null) {
+            foreach($Comments as $Comments)
+              {
+                if($Comments['reviews'] == 5)
+                {
+                  $img = "https://img.icons8.com/carbon-copy/50/000000/5-c.png";
+                }
+                elseif($Comments['reviews'] == 4)
+                {
+                  $img = "https://img.icons8.com/carbon-copy/50/000000/4-c.png";
+                }
+                elseif($Comments['reviews'] == 3)
+                {
+                  $img = "https://img.icons8.com/carbon-copy/50/000000/3-c.png";
+                }
+                elseif($Comments['reviews'] == 2)
+                {
+                  $img = "https://img.icons8.com/carbon-copy/50/000000/2-c.png";
+                }
+                elseif($Comments['reviews'] == 1)
+                {
+                  $img = "https://img.icons8.com/carbon-copy/50/000000/1-c.png";
+                }
+                echo  '<p>'.$Comments['comment_description'].'</p>
+                <img src="'.$img.'" class="img-fluid" style="max-width: 30px;">
+                <small class="text-muted">Commentaires de '.$Comments['user'].' écrit le '.$Comments['date_creation'].'</small>
+                
+                <hr>';
+              }
+          }
+            ?>
             <form action="/annonces/CommentsBars/add" method ="POST">
                         <div class="form-row">
                           <input type="text" class="form-label col" value ="<?php echo $Bars['id']?>" name ="boites_de_nuit_id" hidden></input>
