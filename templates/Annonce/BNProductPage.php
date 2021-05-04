@@ -70,7 +70,7 @@
                         <div class="form-row">
                           <input type="text" class="form-label col" value ="<?php echo $BN['id']?>" name ="boites_de_nuit_id" hidden></input>
                             <div class="col-lg-7">
-                                 <textarea type="text" placeholder="Votre commentaire..." class="form-label my-3 p-3 w-100" name ="description"></textarea>
+                                 <textarea type="text" placeholder="Votre commentaire..." class="form-label my-3 p-3 w-100" name ="description" required></textarea>
                             </div>
                         </div>
                         <label>Note : </label><br>
