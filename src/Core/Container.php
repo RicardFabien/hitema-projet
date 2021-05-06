@@ -16,12 +16,19 @@ use App\Controller\Logout;
 use App\Controller\BN;
 use App\Query\BNQuery;
 use App\Controller\Bars;
+use App\Controller\CommentsBars;
+use App\Controller\CommentsBN;
 use App\Controller\ContactPage;
 use App\Controller\Payment;
 use App\Query\BarsQuery;
-
 use App\Controller\Register;
-
+use App\Model\App_user;
+use App\Query\CommentsBarsQuery;
+use App\Query\CommentsBNQuery;
+/*
+require_once __DIR__ ."/../Query/CommentsBNQuerry.php";
+require_once __DIR__ ."/../Query/CommentsBarsQuerry.php";
+*/
 /*
     Conteneurs d'instances des classes utilisées dans l'application cette classe renvoie les instances
 */
@@ -77,6 +84,22 @@ class Container
             },
             BarsQuery::class => function(){ 
                return new \App\Query\BarsQuery(
+                  self::getInstance(Database::class),
+               );
+            },
+            CommentsBN::class => function(){ 
+               return new \App\Controller\CommentsBN();
+            },
+            CommentsBNQuery::class => function(){ 
+               return new \App\Query\CommentsBNQuery(
+                  self::getInstance(Database::class),
+               );
+            },
+            CommentsBars::class => function(){ 
+               return new \App\Controller\CommentsBars();
+            },
+            CommentsBarsQuery::class => function(){ 
+               return new \App\Query\CommentsBarsQuery(
                   self::getInstance(Database::class),
                );
             },

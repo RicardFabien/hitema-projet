@@ -10,6 +10,7 @@ class Bars
     private int $price;
     private string $date_creation;
     private string $description;
+    private string $user;
 
     public function getId():int { return $this->id; }
     public function getName():String { return $this->name; }
@@ -17,6 +18,7 @@ class Bars
     public function getPrice():int { return $this->price; }
     public function getDate_Creation():String { return $this->date_creation; }
     public function getDescription():String { return $this->description; }
+    public function getUser():String { return $this->user; }
 
     public function setName(String $value):void { $this->name = $value; }
     public function setLieu(String $value):void { $this->lieu = $value; }

@@ -97,11 +97,11 @@ class BarsQuery
         return $result;
     }
 
-    public function insertOne(String $name, String $lieu, float $price, String $description)
+    public function insertOne(String $name, String $lieu, float $price, String $description, String $user)
     {
         
         $sql = "INSERT INTO API.Bars
-                    VALUES ('null', :name, :lieu, :price, NOW(), :description )";
+                    VALUES ('null', :name, :lieu, :price, NOW(), :description, :user )";
         
         // préparation de la requête
         $query = $this->connection->prepare($sql);
@@ -113,6 +113,7 @@ class BarsQuery
             'lieu' => $lieu,
             'price' => $price,
             'description' => $description,
+            'user' => $user
         ]);
     }
 
@@ -170,6 +171,29 @@ class BarsQuery
         return $result;
     }
 
+    public function FindOne(int $id)
+    {
+        // requête 
+        $sql = '
+            SELECT * FROM API.Bars WHERE id= :id
+        ';
+
+        $sql .= ';';
+
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute([
+            'id' => $id
+        ]);
+
+        $result = $query->fetchAll();
+
+        // retour des résultats 
+        return $result;
+    }
     
 
 

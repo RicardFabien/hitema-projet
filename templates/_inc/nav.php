@@ -24,9 +24,18 @@
 					</ul>
 					</li>
 				</ul>
-				<form class="d-flex">	
-					<a class="btn btn-outline-success me-2" type="button" href="/login">Se connecter</a>
-					<a class="btn btn-outline-success" type="button" href="/register">S'inscrire</a>
+				<form class="d-flex">
+				<?php
+				if($_SESSION['login'] == null){
+				?>
+					<a class='btn btn-outline-success me-2' type='button' href='/login' style ='max-width: 300px; width: 150px;'>Se connecter</a>
+					<a class='btn btn-outline-success' type='button' href='/register'>S'inscrire</a>
+				<?php
+				}
+				else {
+					echo "<a class='btn btn-outline-success me-2' type='button' href='/login'>Profil</a>";
+				}
+				?>
 				</form>
 			</div>
 		</div>

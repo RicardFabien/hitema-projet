@@ -71,9 +71,21 @@ class Routing
             'controller' => 'BN',
             'method' => 'update',
         ],
-        '/annonces/Produit' => [
+        '/annonces/Bars/(?<id>\d+)' => [
             'controller' => 'AnnoncePage',
-            'method' => 'productPage',
+            'method' => 'BarsProductPage',
+        ],
+        '/annonces/BN/(?<id>\d+)' => [
+            'controller' => 'AnnoncePage',
+            'method' => 'BNProductPage',
+        ],
+        '/annonces/CommentsBN/add' => [
+            'controller' => 'CommentsBN',
+            'method' => 'addCommentsBN',
+        ],
+        '/annonces/CommentsBars/add' => [
+            'controller' => 'CommentsBars',
+            'method' => 'addCommentsBars',
         ],
         '/auth' => [
             'controller' => 'Authentication',
@@ -171,7 +183,8 @@ class Routing
                 - chaine à caractère à tester
                 - récupèration des données
             */
-            if(preg_match("#^$regexp$#",$uri,$groups)){
+            if(preg_match("#^$regexp$#", $uri, $groups))
+            {
                 $result = $infos;
                 $result["vars"] = $groups;
                 break;

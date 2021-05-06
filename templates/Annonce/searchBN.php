@@ -121,7 +121,7 @@
                         echo '<div class="card mb-3 border-success bg-light d-flex p-2" style="max-width: 750px;">';
                             echo '<div class="row g-0">';
                                 echo '<div class="col-md-4">'; 
-                                    echo '<img src="//placeimg.com/290/180/any" alt="..." style="max-width: 250px;" class="rounded mt-3">';
+                                    echo '<img src="https://images.unsplash.com/photo-1596131397999-bb01560efcae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1267&q=80" alt="..." style="max-width: 250px; max-height: 200px;" class="rounded mt-3">';
                                 echo '</div>';
                                 echo '<div class="col-md-8">';
                                     echo '<div class="card-body text-success">';
@@ -131,10 +131,10 @@
                                             echo '<small class="text-muted">Localisation : '.$BN['lieu'].'</small></p>';
                                             echo '<small class="text-muted">Référence : '.$BN['id'].'</small></p>';
                                             echo '<div class="col-4">';
-                                                echo '<small class="text-muted">Créee le '.$BN['date_creation'].'</small></p>';
+                                                echo '<small class="text-muted">Créee le '.$BN['date_creation'].' <br>Par '.$BN['user'].' </small></p>';
                                             echo '</div>';
                                             echo '<div class="col-4">';
-                                                echo '<a class="btn btn-outline-success me-2" type="button" href="/annonces/Produit">Voir l\'annonce</a>';
+                                                echo '<a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'.$BN['id'].'">Voir l\'annonce</a>';
                                             echo '</div>';
                                         echo '</div>';
                                     echo '</div>';

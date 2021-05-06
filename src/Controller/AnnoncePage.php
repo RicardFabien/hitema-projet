@@ -4,6 +4,10 @@ namespace App\Controller;
 
 use App\Core\Container;
 use App\Query\UserQuery;
+use App\Query\BarsQuery;
+use App\Query\BNQuery;
+use App\Query\CommentsBarsQuery;
+use App\Query\CommentsBNQuery;
 
 class AnnoncePage extends AbstractController
 {
@@ -30,11 +34,42 @@ class AnnoncePage extends AbstractController
         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
         $this->render('Annonce/searchBN',["level" => $userLevel]);
     }
-    public function productPage():void
+    public function BarsProductPage(array $data = []):void
     {
+        $BarsQuery = Container::getInstance(BarsQuery::class);
+        $id = $data["id"];
+        $Bars = $BarsQuery->FindOne($id);
+        $CommentBars = Container::getInstance(CommentsBarsQuery::class);
+        $Comments = $CommentBars->FindCommentsByBars($id);
+
         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
-        $this->render('Annonce/productPage',["level" => $userLevel]);
+
+        $this->render('Annonce/BarsproductPage',[
+            "id" => $id,
+            'Bars' => $Bars,
+            "level" => $userLevel,
+            "Comments" => $Comments
+            ]);
     }
+
+    public function BNProductPage(array $data = []):void
+    {
+        $BNQuery = Container::getInstance(BNQuery::class);
+        $id = $data["id"];  
+        $BN = $BNQuery->FindOne($id);
+        $CommentBars = Container::getInstance(CommentsBNQuery::class);
+        $Comments = $CommentBars->FindCommentsByBars($id);
+
+        $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
+
+        $this->render('Annonce/BNproductPage',[
+            "id" => $id,
+            'BN' => $BN,
+            "level" => $userLevel,
+            "Comments" => $Comments
+            ]);
+    }
+
 
     public function ajoutBars():void
     {
