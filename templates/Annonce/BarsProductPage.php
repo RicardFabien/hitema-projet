@@ -21,6 +21,8 @@
               <p class="card-text">'.$Bars['user'].'</p>
               <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
               4.0 stars
+              <br><br><a class="btn btn-outline-success me-2" type="button" href="/payment/bar'.$Bars['id'].'">Réserver</a>
+
             </div>
           </div>';
         }
@@ -61,7 +63,7 @@
                 echo  '<p>'.$Comments['comment_description'].'</p>
                 <img src="'.$img.'" class="img-fluid" style="max-width: 30px;">
                 <small class="text-muted">Commentaires de '.$Comments['user'].' écrit le '.$Comments['date_creation'].'</small>
-                
+                azdazdz
                 <hr>';
               }
           }
