@@ -99,8 +99,8 @@ class Container
              Dotenv::class => function(){
                 return new \App\Core\Dotenv();
              },
-             User::class => function(){
-                return new \App\Model\User();
+             App_user::class => function(){
+                return new \App\Model\App_user();
              }, 
              UserQuery::class => function(){
                 return new \App\Query\UserQuery(

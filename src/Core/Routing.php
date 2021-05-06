@@ -123,10 +123,14 @@ class Routing
             'controller' => 'Register',
             'method' => 'index',
         ],
-        '/payment' => [
+        "/payment/(?<id>\w+)" => [
             'controller' => 'Payment',
             'method' => 'index'
-        ]
+        ],
+        "/payment_processing" => [
+            'controller' => 'Payment',
+            'method' => 'process'
+        ],
         
         /*
             utilisation d'une expression rationnelle
@@ -144,48 +148,45 @@ class Routing
         
     ];
 
-    // retourner le contrôleur et la méthode
-    public function getRouteInfos():array
-    {
-        // récupérer la route (URL)
-        $uri = $_SERVER['REQUEST_URI'];
+    //retourne le controlleur et la methode
+    public function getRouteInfos():array{
 
-        // Valeur par défaut
+        //recupere la route(URL)
+        $uri = $_SERVER["REQUEST_URI"];
+        
+        //Route par defaut
         $result = [
             'controller' => 'NotFound',
             'method' => 'index',
-            'vars' => [],
+            'vars' => []
         ];
 
-        // tester si la route 
-        foreach($this->routes as $regexp => $infos)
-        {
+        //acceder à la route
+        foreach($this->routes as $regexp => $infos){
+
             /*
-                preg_match : tester la concordance avec une expression rationnelle, 3 paramètres
-                - expression rationnelle
-                - chaîne de caractères à tester
-                - récupération des groupes
+            preg_match : teste la concordance avec une expression rationnelle
+            3 params :
+                -expression rationnelle
+                - chaine à caractère à tester
+                - récupèration des données
             */
-            if(preg_match("#^^$regexp$#", $uri, $groups))
-            {
+            if(preg_match("#^$regexp$#",$uri,$groups)){
                 $result = $infos;
-                $result['vars'] = $groups;
-                
-                // stopper la boucle
+                $result["vars"] = $groups;
                 break;
+
             }
         }
 
-        // dans les groupes des expressions rationnelles, ne conserver que les clés non numériques
-        foreach($result['vars'] as $key => $value)
-        {
-            // unset : supprimer une entrée dans un array
-            if(is_int($key)) 
-            {
-                unset($result['vars'][$key]);
+        //Dans les groupes des expressions rationnelles, ne conserver que les clefs non numérique
+        foreach($result["vars"] as $key => $value){
+            if(is_int($key)){
+                unset($result["vars"][$key]);
             }
         }
         
-        return $result;        
-    }
+        return $result;
+
+    } 
 }

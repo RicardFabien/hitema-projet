@@ -61,8 +61,8 @@ class BarsQuery
         // requête 
         $sql = '
             SELECT 
-            API.Bars.*
-            FROM App_user
+            bars.*
+            FROM bars
             WHERE 
         ';
 
@@ -73,7 +73,7 @@ class BarsQuery
         foreach($args as $column => $value)
         {
             $sql .= "
-                Bars.$column = :$column
+                bars.$column = :$column
             ";
         }
 
