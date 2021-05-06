@@ -44,6 +44,71 @@ require_once __DIR__ . '/../_inc/nav.php';
 
             <input type=hidden id="disconnect" name = "disconnect" value = "disconnect"/> 
             <input type="submit" value="Se deconnecter">
+            <div class="container mt-5">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-image">
+                        <thead>
+                            <tr>
+        
+                                <th scope="col">Image du bar</th>
+                                <th scope="col">Nom du bar</th>
+                                <th scope="col">Commentaire</th>
+        
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach($Comments as $Comments)
+                        {
+                           echo '<tr>
+                                <td class="w-25">
+                                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" class="img-fluid img-thumbnail" alt="Sheep">
+                                </td>
+                                <td><a class="btn btn-outline-success me-2" type="button" href="/annonces/Bars/'.$Comments['Bars_id'].'">Voir l\'annnonce</a></td>
+                                <td>'.$Comments['comment_description'].'</td>
+        
+                            </tr>';
+                        }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><br><br>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-image">
+                        <thead>
+                            <tr>
+        
+                                <th scope="col">Image de la boîte de nuit</th>
+                                <th scope="col">Nom de la boîte de nuit</th>
+                                <th scope="col">Commentaire</th>
+        
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach($CommentsBN as $CommentsBN)
+                        {
+                           echo '<tr>
+                                <td class="w-25">
+                                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" class="img-fluid img-thumbnail" alt="Sheep">
+                                </td>
+                                <td><a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'.$CommentsBN['boites_de_nuit_id'].'">Voir l\'annnonce</a></td>
+                                <td>'.$CommentsBN['comment_description'].'</td>
+        
+                            </tr>';
+                        }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
 
         </form> 
     <?php } ?>

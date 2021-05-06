@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Core\Container;
+use App\Query\CommentsBarsQuery;
+use App\Query\CommentsBNQuery;
 use App\Query\UserQuery;
 
 class Login extends AbstractController
@@ -22,14 +24,20 @@ class Login extends AbstractController
         }
 
         if(isset($_POST["login"]))
-            $_SESSION["login"] = $_POST["login"]; 
+            $_SESSION["login"] = $_POST["login"];
 
-        if(isset($_POST["password"]))
-            $_SESSION["password"] = $_POST["password"]; 
+        if(isset($_POST["password"])){
+            $_SESSION["password"] = $_POST["password"];
+        }
+
+        $CommentsBar = Container::getInstance(CommentsBarsQuery::class);
+        $Comments = $CommentsBar->FindCommentsByUsers($_SESSION["login"]);
+        $CommentsBN = Container::getInstance(CommentsBNQuery::class);
+        $CommentsBN = $CommentsBN->FindCommentsByUsers($_SESSION["login"]);
 
 
         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
     
-        $this->render('login/index',['level' => $userLevel]);
+        $this->render('login/index',['level' => $userLevel, 'Comments' => $Comments, 'CommentsBN' => $CommentsBN]);
     }
 }
