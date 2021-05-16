@@ -23,17 +23,22 @@ class Login extends AbstractController
             unset($_SESSION["password"]);
         }
 
-        if(isset($_POST["login"]))
+        $login = "afasfsafdsafdasfdafsafsadf";
+
+        if(isset($_POST["login"])){
             $_SESSION["login"] = $_POST["login"];
+            $login = $_SESSION["login"];
+        }
+            
 
         if(isset($_POST["password"])){
             $_SESSION["password"] = $_POST["password"];
         }
 
         $CommentsBar = Container::getInstance(CommentsBarsQuery::class);
-        $Comments = $CommentsBar->FindCommentsByUsers($_SESSION["login"]);
+        $Comments = $CommentsBar->FindCommentsByUsers($login);
         $CommentsBN = Container::getInstance(CommentsBNQuery::class);
-        $CommentsBN = $CommentsBN->FindCommentsByUsers($_SESSION["login"]);
+        $CommentsBN = $CommentsBN->FindCommentsByUsers($login);
 
 
         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
