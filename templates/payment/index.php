@@ -9,7 +9,6 @@ require_once __DIR__ . '/../_inc/nav.php';
 ?>
 <div class = "mt-5">
     <?php if ($level == UserQuery::VISITOR_INDICATOR) { ?>
-        <br/><br/><br/><br/>
         Vous n'êtes pas connecté
     <?php } else if (!isset($locationData) || $locationData === false ) { ?>
         Cette annonce n'existe pas

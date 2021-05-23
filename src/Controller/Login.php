@@ -16,33 +16,38 @@ class Login extends AbstractController
             'message' => $id,
         ]);
     }*/
-    public function index():void
+    public function index(): void
     {
-        if(isset($_POST["disconnect"])){
+        if (isset($_POST["disconnect"])) {
             unset($_SESSION["login"]);
             unset($_SESSION["password"]);
         }
+        $CommentsBN = null;
+        $Comments = null;
 
-        $login = "afasfsafdsafdasfdafsafsadf";
+        $login = "noioihpojhijgohg";
+        if (isset($_POST["login"])) {
 
-        if(isset($_POST["login"])){
             $_SESSION["login"] = $_POST["login"];
             $login = $_SESSION["login"];
         }
-            
 
-        if(isset($_POST["password"])){
+
+        if (isset($_POST["password"])) {
             $_SESSION["password"] = $_POST["password"];
         }
+        if ($login != null) {
 
-        $CommentsBar = Container::getInstance(CommentsBarsQuery::class);
-        $Comments = $CommentsBar->FindCommentsByUsers($login);
-        $CommentsBN = Container::getInstance(CommentsBNQuery::class);
-        $CommentsBN = $CommentsBN->FindCommentsByUsers($login);
+            $CommentsBar = Container::getInstance(CommentsBarsQuery::class);
+            $Comments = $CommentsBar->FindCommentsByUsers($login);
+            $CommentsBN = Container::getInstance(CommentsBNQuery::class);
+            $CommentsBN = $CommentsBN->FindCommentsByUsers($login);
+        }
+
 
 
         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
-    
-        $this->render('login/index',['level' => $userLevel, 'Comments' => $Comments, 'CommentsBN' => $CommentsBN]);
+
+        $this->render('login/index', ['level' => $userLevel, 'Comments' => $Comments, 'CommentsBN' => $CommentsBN]);
     }
 }
