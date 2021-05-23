@@ -72,9 +72,23 @@ class Payment extends AbstractController
         }
 
 
-        if (!isset($response->id)) {
-            $userError = "Il y a eu une erreur";
-        } else {
+        if (!isset($response->id) && !$userError) {
+            $userError = "La connection avec le service de payement n'a pus être effectué";
+
+            if(isset($response->error->message))
+            {
+                $errMessage = $response->error->message;
+                if(str_starts_with($errMessage, "Your card number is incorrect"))
+                    $userError = "Votre numero de carte est incorrecte";
+                else if(str_starts_with($errMessage,"Your card's expiration month is invalid"))
+                    $userError = "Votre date d'expiration est invalide";
+                else if(str_starts_with($errMessage,"Your card's security code is invalid"))
+                    $userError = "Le numero de sécurité de votre carte est invalide";
+                else
+                    $userError = $errMessage;
+                
+            }
+        } else if (isset($response->id)){
             $chargeData = [
                 "amount" => 2000,
                 "currency" => "eur",
@@ -105,6 +119,6 @@ class Payment extends AbstractController
             $isValid = true;
         }
 
-        $this->render('payment/process', ["isValid" => $isValid]);
+        $this->render('payment/process', ["isValid" => $isValid,"errorMessage" => $userError]);
     }
 }

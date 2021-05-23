@@ -17,10 +17,10 @@ require_once __DIR__ . '/../_inc/nav.php';
         <p>Etablissement : <?php echo $locationData->getName() ?></p>
         <form method="POST" action="/payment_processing" id = "payment-form">
     
-        <input type = text name="name" placeholder = "Nom Prenom"></input>
-        <input type = text name="email" placeholder = "Email"></input>
+        <input type = text name="name" placeholder = "Nom Prenom" required></input>
+        <input type = "email" name="email" placeholder = "Email" required></input>
 
-            <input type = "text" placeholder = "numero de carte" name = number ></input>
+            <input type = "text" placeholder = "numero de carte" name = number required></input>
             <select name = "exp_month" ><?php for($i = 0; $i < 12;$i = $i + 1){ ?>
                 <option> <?php echo ($i+1)?></option>
                 <?php } ?>

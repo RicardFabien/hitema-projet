@@ -9,9 +9,9 @@ require_once __DIR__ . '/../_inc/nav.php';
 ?>
 <div class = "mt-5">
     <?php if($isValid){
-        echo "L'operation à réussi";
+        echo '<div class="alert alert-success" role="alert">L\'operation à réussi</div>';
     } else {
-        echo "Il y a eu une erreur";
+        echo '<div class="alert alert-danger" role="alert">'.$errorMessage.'</div>';
     } ?>
     </div>
 
