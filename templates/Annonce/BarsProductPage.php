@@ -18,10 +18,17 @@
               <h4>Prix : '.$Bars['price'].' €</h4>
               <p class="card-text">'.$Bars['description'].'</p>
               <p class="card-text">'.$Bars['date_creation'].'</p>
-              <p class="card-text">'.$Bars['user'].'</p>
-              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-              4.0 stars
-              <br><br><a class="btn btn-outline-success me-2" type="button" href="/payment/bar'.$Bars['id'].'">Réserver</a>
+              <p class="card-text">'.$Bars['user'].'</p>';
+              
+            if ($Moy != null) {
+              foreach($Moy as $Moy)
+              {
+                echo '<span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                '.round($Moy['AVG(reviews)'], 1).' &#9733';
+              }
+            }
+              
+              echo '<br><br><a class="btn btn-outline-success me-2" type="button" href="/payment/bar'.$Bars['id'].'">Réserver</a>
 
             </div>
           </div>';

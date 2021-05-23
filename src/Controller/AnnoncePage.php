@@ -42,13 +42,17 @@ class AnnoncePage extends AbstractController
         $CommentBars = Container::getInstance(CommentsBarsQuery::class);
         $Comments = $CommentBars->FindCommentsByBars($id);
 
+        $MoyReviews = Container::getInstance(CommentsBarsQuery::class);
+        $Moy = $CommentBars->MoyReviews($id);
+
         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
 
         $this->render('Annonce/BarsproductPage',[
             "id" => $id,
             'Bars' => $Bars,
             "level" => $userLevel,
-            "Comments" => $Comments
+            "Comments" => $Comments,
+            "Moy" => $Moy
             ]);
     }
 
@@ -59,6 +63,8 @@ class AnnoncePage extends AbstractController
         $BN = $BNQuery->FindOne($id);
         $CommentBars = Container::getInstance(CommentsBNQuery::class);
         $Comments = $CommentBars->FindCommentsByBars($id);
+        $MoyReviews = Container::getInstance(CommentsBNQuery::class);
+        $Moy = $CommentBars->MoyReviews($id);
 
         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
 
@@ -66,7 +72,8 @@ class AnnoncePage extends AbstractController
             "id" => $id,
             'BN' => $BN,
             "level" => $userLevel,
-            "Comments" => $Comments
+            "Comments" => $Comments,
+            "Moy" => $Moy
             ]);
     }
 

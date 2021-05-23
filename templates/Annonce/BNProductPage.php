@@ -11,16 +11,25 @@
         foreach($BN as $BN)
         {
           echo '<div class="card mt-4">
-            <img class="card-img-top img-fluid" src="https://images.unsplash.com/photo-1596131397999-bb01560efcae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1267&q=80" style="max-height: 42rem;" alt="">
+            <img class="card-img-top img-fluid" src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" style="max-height: 42rem;" alt="">
             <div class="card-body">
               <h3 class="card-title">'.$BN['name'].'</h3>
               <h4>Ville : '.$BN['lieu'].'</h4>
               <h4>Prix : '.$BN['price'].' €</h4>
               <p class="card-text">'.$BN['description'].'</p>
               <p class="card-text">'.$BN['date_creation'].'</p>
-              <p class="card-text">'.$BN['user'].'</p>
-              <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-              4.0 stars
+              <p class="card-text">'.$BN['user'].'</p>';
+              
+            if ($Moy != null) {
+              foreach($Moy as $Moy)
+              {
+                echo '<span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                '.round($Moy['AVG(reviews)'], 1).' &#9733';
+              }
+            }
+              
+              echo '<br><br><a class="btn btn-outline-success me-2" type="button" href="/payment/bar'.$BN['id'].'">Réserver</a>
+
             </div>
           </div>';
         }
