@@ -15,6 +15,7 @@ require_once __DIR__ . '/../_inc/nav.php';
             <div class="col-lg-7 px-5 pt-5">
                 <h1 style="color:#017143">nLife</h1>
                 <h4>Connectez vous à votre compte</h4>
+                <?php if (isset($_SESSION["login"])) { ?> <p class="btn btn-danger disabled" style="height: 35px; opacity: 1;">Ce compte n'existe pas</p> <?php }?>
                 <form action="/login" method="POST">
                     <div class="form-row">
                         <div class="col-lg-7">
@@ -38,7 +39,7 @@ require_once __DIR__ . '/../_inc/nav.php';
 
         </div>
     </section>
-<?php } else { ?>
+<?php unset($_SESSION["login"]);} else { ?>
     <p>Vous êtes connecté sous le pseudo <?php echo $_SESSION["login"] ?> </p>
     <form action="/logout" method="POST">
 
@@ -111,9 +112,23 @@ require_once __DIR__ . '/../_inc/nav.php';
 
 
     </form>
-<?php } ?>
+<?php } 
+
+ if ($level == UserQuery::VISITOR_INDICATOR) { ?>
+<script>
+document.title = "Login";
+</script>
+
+<?php } else {?>
+
+<script>
+document.title = "Profil - <?=$_SESSION["login"]?>";
+</script>
+
+</script>
 
 <?php
+}
 
 // inclusion du footer
 require_once __DIR__ . '/../_inc/footer.php';

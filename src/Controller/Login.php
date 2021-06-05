@@ -22,8 +22,6 @@ class Login extends AbstractController
             unset($_SESSION["login"]);
             unset($_SESSION["password"]);
         }
-        $CommentsBN = null;
-        $Comments = null;
 
         $login = "noioihpojhijgohg";
         if (isset($_POST["login"])) {
@@ -36,13 +34,10 @@ class Login extends AbstractController
         if (isset($_POST["password"])) {
             $_SESSION["password"] = $_POST["password"];
         }
-        if ($login != null) {
+        
 
-            $CommentsBar = Container::getInstance(CommentsBarsQuery::class);
-            $Comments = $CommentsBar->FindCommentsByUsers($login);
-            $CommentsBN = Container::getInstance(CommentsBNQuery::class);
-            $CommentsBN = $CommentsBN->FindCommentsByUsers($login);
-        }
+            $Comments = Container::getInstance(CommentsBarsQuery::class)->FindCommentsByUsers($login);
+            $CommentsBN = Container::getInstance(CommentsBNQuery::class)->FindCommentsByUsers($login);        
 
 
 

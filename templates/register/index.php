@@ -44,7 +44,7 @@ require_once __DIR__ . '/../_inc/nav.php';
         </div>
 
         <?php if($alreadyInUse){ ?>
-            <p>Ce compte existe déjà</p>
+            <p class="btn btn-danger disabled" style="height: 35px; opacity: 1;">Ce compte existe déjà</p>
         <?php } ?>
         </div>
     </section>
