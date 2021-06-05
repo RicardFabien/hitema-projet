@@ -29,7 +29,7 @@ class Bars extends AbstractController
 
       if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
         $gameQuery = Container::getInstance(BarsQuery::class);
-        $gameQuery->insertOne($_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description'], $_SESSION["login"]);
+        $gameQuery->insertOne($_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description'], $_SESSION["login"], $_POST['adress'], $_POST['zip_code']);
       }
       
       header('location: /annonces/bars');
@@ -42,7 +42,7 @@ class Bars extends AbstractController
 
       if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
         $gameQuery = Container::getInstance(BarsQuery::class);
-        $gameQuery->ModifOne($_POST['id'], $_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description']);
+        $gameQuery->ModifOne($_POST['id'], $_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description'], $_POST['adress'], $_POST['zip_code']);
       }
       header('location: /annonces/bars');
     }

@@ -128,8 +128,8 @@
                                         echo '<h5 class="card-title">'.$BN['name'].'</h5>';
                                         echo '<p class="card-text">'.$description[0].'...</p>';
                                         echo '<div class="row justify-content-between">';
-                                            echo '<small class="text-muted">Localisation : '.$BN['lieu'].'</small></p>';
-                                            echo '<small class="text-muted">Référence : '.$BN['id'].'</small></p>';
+                                        echo '<small class="text-muted">Localisation : '.$BN['adress'].' '.$BN['zip_code'].' '.$BN['lieu'].'</small></p>'; 
+                                        echo '<small class="text-muted">Référence : '.$BN['id'].'</small></p>';
                                             echo '<div class="col-4">';
                                                 echo '<small class="text-muted">Créee le '.$BN['date_creation'].' <br>Par '.$BN['user'].' </small></p>';
                                             echo '</div>';

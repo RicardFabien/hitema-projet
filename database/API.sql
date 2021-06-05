@@ -17,7 +17,9 @@ CREATE TABLE api.bars (
   date_creation date NOT NULL,
   description varchar(10000) NOT NULL,
   user VARCHAR(50) NOT NULL,
-  FOREIGN KEY (user) REFERENCES API.app_user(login)
+  FOREIGN KEY (user) REFERENCES API.app_user(login),
+  adress VARCHAR(50) NOT NULL,
+  zip_code int(7) NOT NULL
 );
 
 CREATE TABLE api.boites_de_nuit (
@@ -28,7 +30,9 @@ CREATE TABLE api.boites_de_nuit (
   date_creation date NOT NULL,
   description varchar(10000) NOT NULL,
   user VARCHAR(50) NOT NULL,
-  FOREIGN KEY (user) REFERENCES API.app_user(login)
+  FOREIGN KEY (user) REFERENCES API.app_user(login),
+  adress VARCHAR(50) NOT NULL,
+  zip_code int(7) NOT NULL
 );
 
 CREATE TABLE api.Location_salle (

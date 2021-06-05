@@ -129,7 +129,7 @@
                                         echo '<h5 class="card-title">'.$Bars['name'].'</h5>';
                                         echo '<p class="card-text">'.$description[0].'...</p>';
                                         echo '<div class="row justify-content-between">';
-                                            echo '<small class="text-muted">Localisation : '.$Bars['lieu'].'</small></p>';
+                                            echo '<small class="text-muted">Localisation : '.$Bars['adress'].' '.$Bars['zip_code'].' '.$Bars['lieu'].'</small></p>'; 
                                             echo '<small class="text-muted">Référence : '.$Bars['id'].'</small></p>';
                                             echo '<div class="col-4">';
                                                 echo '<small class="text-muted">Créee le '.$Bars['date_creation'].' <br>Par '.$Bars['user'].' </small></p>';

@@ -30,11 +30,18 @@
                     <option value="Val-d'Oise">Val-d'Oise</option>
                     <option value="Yvelines">Yvelines</option>
                 </select>
-                
-                
-
             </div>
-            <div class="col-sm">
+
+            <div class="col-sm ms-3 me-3">
+                <label for="exampleInputPassword1" class="form-label">Adresse</label>
+                <input class="form-control form-control-lg mb-3" type="text" name="adress" placeholder="5 rue de Jean Louis">
+            </div>
+            <div class="col-sm ms-3 me-3">
+                <label for="exampleInputPassword1" class="form-label">Code postal</label>
+                <input class="form-control form-control-lg " type="number" name="zip_code" placeholder="95190">
+            </div>
+
+            <div class="col-sm ms-3 me-3">
                 <label for="exampleInputPassword1" class="form-label">Prix</label>
                 <input type="number" step="0.01" class="form-control form-control-lg mb-3" placeholder="Prix" name="price" id="exampleInputPassword1">
             </div>

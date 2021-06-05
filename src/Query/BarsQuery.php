@@ -6,7 +6,7 @@ namespace App\Query;
 use PDO;
 use App\Model\Bars;
 use App\Core\Database;
-
+use Stripe\Invoice;
 
 class BarsQuery
 {
@@ -97,11 +97,11 @@ class BarsQuery
         return $result;
     }
 
-    public function insertOne(String $name, String $lieu, float $price, String $description, String $user)
+    public function insertOne(String $name, String $lieu, float $price, String $description, String $user, String $adress, int $zip_code)
     {
         
         $sql = "INSERT INTO API.Bars
-                    VALUES ('null', :name, :lieu, :price, NOW(), :description, :user )";
+                    VALUES ('null', :name, :lieu, :price, NOW(), :description, :user, :adress, :zip_code )";
         
         // préparation de la requête
         $query = $this->connection->prepare($sql);
@@ -113,7 +113,9 @@ class BarsQuery
             'lieu' => $lieu,
             'price' => $price,
             'description' => $description,
-            'user' => $user
+            'user' => $user,
+            'adress' => $adress,
+            'zip_code' => $zip_code,
         ]);
     }
 

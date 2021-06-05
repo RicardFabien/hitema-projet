@@ -14,7 +14,7 @@
             <img class="card-img-top img-fluid" src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" style="max-height: 42rem;" alt="">
             <div class="card-body">
               <h3 class="card-title">'.$Bars['name'].'</h3>
-              <h4>Ville : '.$Bars['lieu'].'</h4>
+              <h4>Adresse : '.$Bars['adress'].' '.$Bars['zip_code'].' '.$Bars['lieu'].'</h4>
               <h4>Prix : '.$Bars['price'].' €</h4>
               <p class="card-text">'.$Bars['description'].'</p>
               <p class="card-text">'.$Bars['date_creation'].'</p>
