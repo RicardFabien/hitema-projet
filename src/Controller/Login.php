@@ -23,7 +23,7 @@ class Login extends AbstractController
             unset($_SESSION["password"]);
         }
 
-        $login = "noioihpojhijgohg";
+        
         if (isset($_POST["login"])) {
 
             $_SESSION["login"] = $_POST["login"];
@@ -36,13 +36,21 @@ class Login extends AbstractController
         }
         
 
-            $Comments = Container::getInstance(CommentsBarsQuery::class)->FindCommentsByUsers($login);
-            $CommentsBN = Container::getInstance(CommentsBNQuery::class)->FindCommentsByUsers($login);        
-
+              
 
 
         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
 
+        if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::USER_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR)
+        {
+            $login = $_SESSION["login"];
+        $Comments = Container::getInstance(CommentsBarsQuery::class)->FindCommentsByUsers($login);
+        $CommentsBN = Container::getInstance(CommentsBNQuery::class)->FindCommentsByUsers($login);
+        
         $this->render('login/index', ['level' => $userLevel, 'Comments' => $Comments, 'CommentsBN' => $CommentsBN]);
+        }
+        else {
+            $this->render('login/index', ['level' => $userLevel]);
+        }
     }
 }

@@ -130,5 +130,6 @@ document.title = "Profil - <?=$_SESSION["login"]?>";
 <?php
 }
 
+
 // inclusion du footer
 require_once __DIR__ . '/../_inc/footer.php';

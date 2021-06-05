@@ -26,7 +26,7 @@ class CommentsBN extends AbstractController
     {
       $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
 
-      if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
+      if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::USER_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
         $gameQuery = Container::getInstance(CommentsBNQuery::class);
         $gameQuery->insertOne($_POST['description'], $_POST['reviews'], $_SESSION["login"], $_POST['boites_de_nuit_id']);
       }
@@ -37,7 +37,7 @@ class CommentsBN extends AbstractController
     {
       $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
 
-      if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
+      if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::USER_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
         $gameQuery = Container::getInstance(CommentsBNQuery::class);
         $gameQuery->ModifOne($_POST['id'], $_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description']);
       }
