@@ -40,12 +40,20 @@
                 <label for="exampleInputPassword1" class="form-label">Code postal</label>
                 <input class="form-control form-control-lg " type="number" name="zip_code" placeholder="95190">
             </div>
+        </div>
 
-            <div class="col-sm">
+        <div class="row">
+            <div class="col-sm ms-3 me-3">
                 <label for="exampleInputPassword1" class="form-label">Prix</label>
                 <input type="number" step="0.01" class="form-control form-control-lg mb-3" placeholder="Prix" name="price" id="exampleInputPassword1">
             </div>
+
+            <div class="col-sm ms-3 me-3">
+                <label for="exampleInputPassword1" class="form-label">Nb. de personne max</label>
+                <input type="number" class="form-control form-control-lg mb-3" placeholder="ex : 200" name="max_person" id="exampleInputPassword1">
+            </div>
         </div>
+
         <div class="mb-3 mt-2">
             <label for="exampleInputEmail1" class="form-label">Description</label>
             <textarea type="email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" name="description" placeholder="Description de l'annonce"></textarea>
