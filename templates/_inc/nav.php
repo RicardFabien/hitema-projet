@@ -28,8 +28,8 @@
 				<?php
 				if($_SESSION['login'] == null){
 				?>
-					<a class='btn btn-outline-success me-2' type='button' href='/login' style ='max-width: 300px; width: 150px;'>Se connecter</a>
-					<a class='btn btn-outline-success' type='button' href='/register'>S'inscrire</a>
+					<a class='btn btn-outline-success me-2' type='button' href='/login' style="min-width: 120px; height: 30px; margin-top: 10px; padding-top: 2px;">Se connecter</a>
+					<a class='btn btn-outline-success' type='button' href='/register' style="min-width: 100px; height: 30px; margin-top: 10px; padding-top: 2px;">S'inscrire</a>
 				<?php
 				}
 				else {

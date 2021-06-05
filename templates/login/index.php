@@ -40,11 +40,11 @@ require_once __DIR__ . '/../_inc/nav.php';
         </div>
     </section>
 <?php unset($_SESSION["login"]);} else { ?>
-    <p>Vous êtes connecté sous le pseudo <?php echo $_SESSION["login"] ?> </p>
+    <center><p><b>Vous êtes connecté sous le pseudo</b> <b style="color:darkgreen;"><u><?php echo $_SESSION["login"] ?></u></b></p></center>
     <form action="/logout" method="POST">
 
-        <input type=hidden id="disconnect" name="disconnect" value="disconnect" />
-        <input type="submit" value="Se deconnecter">
+        <center><input type=hidden id="disconnect" name="disconnect" value="disconnect" />
+        <input class="btn btn-outline-dark" type="submit" value="Se deconnecter"></center>
         <div class="container mt-5">
             <div class="row">
                 <div class="col-12">
