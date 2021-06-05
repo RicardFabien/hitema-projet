@@ -32,7 +32,7 @@
 					<a class='btn btn-outline-success' type='button' href='/register'>S'inscrire</a>
 				<?php
 				}
-				elseif  {
+				else {
 					echo "<a class='btn btn-outline-success me-2' type='button' href='/login'>Profil</a>";
 				}
 				?>
