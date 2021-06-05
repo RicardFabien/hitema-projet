@@ -116,9 +116,10 @@ require_once __DIR__ . '/../_inc/nav.php';
 
 
     
-<?php } ?>
+<?php } if ($userLevel === UserQuery::HOST_INDICATOR) { ?>
 <center><button class="btn btn-success" style="width : 500px; font-weight: bold;">Vous possedez un établissement et voulez devenir partenaire ? Contactez-nous !</button></center>
 <?php
+}
  if ($level == UserQuery::VISITOR_INDICATOR) { ?>
 <script>
 document.title = "Login";
