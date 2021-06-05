@@ -40,12 +40,14 @@ require_once __DIR__ . '/../_inc/nav.php';
         </div>
     </section>
 <?php unset($_SESSION["login"]);} else { ?>
-    <center><p><b>Vous êtes connecté sous le pseudo</b> <b style="color:darkgreen;"><u><?php echo $_SESSION["login"] ?></u></b></p></center>
+    <center><p><b>Vous êtes connecté sous le pseudo :</b> <b style="color:darkgreen;"><u><?php echo $_SESSION["login"] ?></u></b></p></center>
     <form action="/logout" method="POST">
 
         <center><input type=hidden id="disconnect" name="disconnect" value="disconnect" />
         <input class="btn btn-outline-dark" type="submit" value="Se deconnecter"></center>
-        <div class="container mt-5">
+    </form>
+        <div class="row">
+        <div class="col m-5">
             <div class="row">
                 <div class="col-12">
                     <table class="table table-image">
@@ -77,7 +79,7 @@ require_once __DIR__ . '/../_inc/nav.php';
                 </div>
             </div>
         </div><br><br>
-        <div class="container mt-5">
+        <div class="col m-5">
             <div class="row">
                 <div class="col-12">
                     <table class="table table-image">
@@ -109,11 +111,14 @@ require_once __DIR__ . '/../_inc/nav.php';
                 </div>
             </div>
         </div>
+        </div>
 
 
-    </form>
-<?php } 
 
+    
+<?php } ?>
+<center><button class="btn btn-success" style="width : 500px; font-weight: bold;">Vous possedez un établissement et voulez devenir partenaire ? Contactez-nous !</button></center>
+<?php
  if ($level == UserQuery::VISITOR_INDICATOR) { ?>
 <script>
 document.title = "Login";
