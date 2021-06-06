@@ -20,9 +20,12 @@ require_once __DIR__ . '/../_inc/nav.php';
         <input type="hidden" name = "type" value = <?php echo $type ?> />
         <input type="hidden" name = "id" value = <?php echo $id ?> />
 
+        <label for="name">Nom et prénom</label>
         <input type = text name="name" placeholder = "Nom Prenom" required></input><br/>
+        <label for="name">Email</label>
         <input type = "email" name="email" placeholder = "Email" required></input><br/>
 
+            
             <input type = "text" placeholder = "numero de carte" name = number required></input>
             <select name = "exp_month" ><?php for($i = 0; $i < 12;$i = $i + 1){ ?>
                 <option> <?php echo ($i+1)?></option>
