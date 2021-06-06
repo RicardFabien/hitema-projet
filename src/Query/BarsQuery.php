@@ -239,6 +239,40 @@ class BarsQuery
         return $result;
     }
     
+    public function FindAnnoncesByUsers(String $login)
+    {
+        // requête 
+        $sql = '
+        SELECT * FROM `bars` WHERE user ="'.$login.'"';
+
+
+        /*
+            requête préparée
+            création de variables dans la requête avec :
+        */
+
+        
+        
+        $sql .= ';';
+
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute();
+
+        /*
+            récupération des résultats
+                fetchObject : permet d'associer les données à un modèle
+                fetchAll : récupérer plusieurs résultats
+        */
+        $result = $query->fetchAll();
+
+        // retour des résultats 
+        return $result;
+    }
+
 
 
 }

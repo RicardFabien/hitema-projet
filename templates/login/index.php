@@ -7,6 +7,27 @@ use App\Query\UserQuery;
 require_once __DIR__ . '/../_inc/header.php';
 require_once __DIR__ . '/../_inc/nav.php';
 ?>
+
+<style>
+
+.t1 {
+    display : none;
+}
+
+.t2 {
+    display : none;
+}
+
+.t3 {
+    display : none;
+}
+
+.t4 {
+    display : none;
+}
+
+</style>
+
 <h1>Se connecter</h1>
 <?php if ($level == UserQuery::VISITOR_INDICATOR) { ?>
     <section class="Form my-4 mx-5">
@@ -45,8 +66,11 @@ require_once __DIR__ . '/../_inc/nav.php';
 
         <center><input type=hidden id="disconnect" name="disconnect" value="disconnect" />
         <input class="btn btn-outline-dark" type="submit" value="Se deconnecter"></center>
+        
     </form>
-        <div class="row">
+    <center class="mt-5"><h2><u>Section Commentaires</u></h2></center>
+    
+    <div class="row">
         <div class="col m-5">
             <div class="row">
                 <div class="col-12">
@@ -54,9 +78,9 @@ require_once __DIR__ . '/../_inc/nav.php';
                         <thead>
                             <tr>
 
-                                <th scope="col">Image du bar</th>
-                                <th scope="col">Nom du bar</th>
-                                <th scope="col">Commentaire</th>
+                                <th scope="col"><h2>Bars</h2></th>
+                                
+                                
 
                             </tr>
                         </thead>
@@ -64,19 +88,20 @@ require_once __DIR__ . '/../_inc/nav.php';
                             <?php
                             if (isset($Comments)) {
                                 foreach ($Comments as $Comments) {
-                                    echo '<tr>
-                                <td class="w-25">
-                                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" class="img-fluid img-thumbnail" alt="Sheep">
-                                </td>
-                                <td><h2>'.$Comments['name'].'</h2><br><a class="btn btn-outline-success me-2" type="button" href="/annonces/Bars/'. $Comments['Bars_id'] . '">Voir l\'annnonce</a></td>
-                                <td>' . $Comments['comment_description'] . '</td>
-        
-                            </tr>';
+                                    echo '<tr class="t2">
+                                            <td class="w-25">
+                                                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" class="img-fluid img-thumbnail" alt="Sheep">
+                                            </td>
+                                            <td><h2>'.$Comments['name'].'</h2><a class="btn btn-outline-success me-2" type="button" href="/annonces/Bars/'. $Comments['Bars_id'] . '">Voir l\'annnonce</a><br><br>' . $Comments['comment_description'] . '</td>
+                                            
+                    
+                                        </tr>';
                                 }
                             }
                             ?>
                         </tbody>
                     </table>
+                    <center><button class ="btn btn-dark" id="btn-load2" style="color: green; font-weight: bold;">Charger plus de commentaires</button></center>
                 </div>
             </div>
         </div><br><br>
@@ -86,10 +111,9 @@ require_once __DIR__ . '/../_inc/nav.php';
                     <table class="table table-image">
                         <thead>
                             <tr>
+                                <th scope="col"><h2>Boîtes de nuit</h2></th>
 
-                                <th scope="col">Image de la boîte de nuit</th>
-                                <th scope="col">Nom de la boîte de nuit</th>
-                                <th scope="col">Commentaire</th>
+
 
                             </tr>
                         </thead>
@@ -97,29 +121,106 @@ require_once __DIR__ . '/../_inc/nav.php';
                             <?php
                             if (isset($CommentsBN)){
                                 foreach ($CommentsBN as $CommentsBN) {
-                                    echo '<tr>
-                                <td class="w-25">
-                                    <img src="https://images.unsplash.com/photo-1596131397999-bb01560efcae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1267&q=80" class="img-fluid img-thumbnail" alt="Sheep">
-                                </td>
-                                <td><h2>'.$CommentsBN['name'].'</h2><br><a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'. $CommentsBN['boites_de_nuit_id'] . '">Voir l\'annnonce</a></td>
-                                <td>' . $CommentsBN['comment_description'] . '</td>
-        
-                            </tr>';
+                                    echo '<tr class="t1">
+                                            <td class="w-25">
+                                                <img src="https://images.unsplash.com/photo-1596131397999-bb01560efcae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1267&q=80" class="img-fluid img-thumbnail" alt="Sheep">
+                                            </td>
+                                            <td><h2>'.$CommentsBN['name'].'</h2><a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'. $CommentsBN['boites_de_nuit_id'] . '">Voir l\'annnonce</a><br><br>' . $CommentsBN['comment_description'] . '</td>
+                    
+                                        </tr>';
                                 }
                             }
                             ?>
                         </tbody>
                     </table>
+                    <center><button class ="btn btn-dark" id="btn-load1" style="color: green; font-weight: bold;">Charger plus de commentaires</button></center>
                 </div>
             </div>
         </div>
-        </div>
+
+        <?php if ($level == UserQuery::HOST_INDICATOR || $level == UserQuery::ADMIN_INDICATOR) { ?>
+
+            <center class="mt-5"><h2><u>Section Annonces</u></h2></center><br><br><br><br><br><br>
+            
+            <div class="row">
+                    <div class="col m-5">
+                    <center><a href="http://localhost:8000/annonces/bars/ajouter"><button class="btn btn-success"> Ajouter une annonce de bars</button></a></center>
+                        <table class="table table-image">
+                            <thead>
+                                <tr>
+
+                                    <th scope="col"><h2>Bars</h2></th>
+                                    <th scope="col"><h2></h2></th>
+                                    <th scope="col"><h2></h2></th>
+                                        
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            <?php
+                            if (isset($AnnoncesBars)){
+                                foreach ($AnnoncesBars as $AnnoncesBars) {
+                                    echo '<tr class="t3">
+                                            <td class="w-25">
+                                                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" class="img-fluid img-thumbnail" alt="Sheep">
+                                            </td>
+                                            <td><h2>'.$AnnoncesBars['name'].'</h2><br><h3>Adresse : '.$AnnoncesBars['adress'].' '.$AnnoncesBars['zip_code'].'</h3><a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'. $AnnoncesBars['id'] . '">Voir l\'annnonce</a><br><br>' . $AnnoncesBars['description'] . '</td>
+                    
+                                        </tr>';
+                                }
+                            }
+                            ?>
+
+                            </tbody>
+                    </table>
+                    <center><button class ="btn btn-dark" id="btn-load3" style="color: green; font-weight: bold;">Charger plus de commentaires</button></center>
+                </div>
+
+                <div class="col m-5">
+                <center><a href="http://localhost:8000/annonces/BN/ajouter"><button class="btn btn-success"> Ajouter une annonce de Boîte de nuit</button></a></center>
+                <table class="table table-image">
+                            <thead>
+                                <tr>
+
+                                    <th scope="col"><h2>Boîtes de nuit</h2></th>
+                                    <th scope="col"><h2></h2></th>
+                                    <th scope="col"><h2></h2></th>
+                                        
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            if (isset($AnnoncesBN)){
+                                foreach ($AnnoncesBN as $AnnoncesBN) {
+                                    echo '<tr class="t4">
+                                            <td class="w-25">
+                                                <img src="https://images.unsplash.com/photo-1596131397999-bb01560efcae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1267&q=80" class="img-fluid img-thumbnail" alt="Sheep">
+                                            </td>
+                                            <td><h2>'.$AnnoncesBN['name'].'</h2><br><h3>Adresse : '.$AnnoncesBN['adress'].' '.$AnnoncesBN['zip_code'].'</h3><a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'. $AnnoncesBN['id'] . '">Voir l\'annnonce</a><br><br>' . $AnnoncesBN['description'] . '</td>
+                    
+                                        </tr>';
+                                }
+                            }
+                            ?>
+                            
+                            </tbody>
+                    </table>
+                    <center><button class ="btn btn-dark" id="btn-load4" style="color: green; font-weight: bold;">Charger plus de commentaires</button></center>
+                </div>
+             
+            </div>
+
+        <?php } ?>
+    </div>
 
 
 
     
-<?php } if ($userLevel === UserQuery::HOST_INDICATOR) { ?>
+<?php } if ($userLevel === UserQuery::USER_INDICATOR) { ?>
 <center><button class="btn btn-success" style="width : 500px; font-weight: bold;">Vous possedez un établissement et voulez devenir partenaire ? Contactez-nous !</button></center>
+
 <?php
 }
  if ($level == UserQuery::VISITOR_INDICATOR) { ?>
@@ -133,7 +234,44 @@ document.title = "Login";
 document.title = "Profil - <?=$_SESSION["login"]?>";
 </script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(".t1").slice(0,3).show()
+$("#btn-load1").on("click", function(){
+    $(".t1:hidden").slice(0,3).slideDown()
+    if ($(".t1:hidden").length == 0) {
+        $("#btn-load1").fadeOut('slow')
+    }
+})
+
+$(".t2").slice(0,3).show()
+$("#btn-load2").on("click", function(){
+    $(".t2:hidden").slice(0,3).slideDown()
+    if ($(".t2:hidden").length == 0) {
+        $("#btn-load2").fadeOut('slow')
+    }
+})
+
+$(".t3").slice(0,3).show()
+$("#btn-load3").on("click", function(){
+    $(".t3:hidden").slice(0,3).slideDown()
+    if ($(".t3:hidden").length == 0) {
+        $("#btn-load3").fadeOut('slow')
+    }
+})
+
+$(".t4").slice(0,3).show()
+$("#btn-load4").on("click", function(){
+    $(".t4:hidden").slice(0,3).slideDown()
+    if ($(".t4:hidden").length == 0) {
+        $("#btn-load4").fadeOut('slow')
+    }
+})
+
+
 </script>
+
+
 
 <?php
 }

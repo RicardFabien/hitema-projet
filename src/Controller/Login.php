@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Core\Container;
+use App\Query\BarsQuery;
+use App\Query\BNQuery;
 use App\Query\CommentsBarsQuery;
 use App\Query\CommentsBNQuery;
 use App\Query\UserQuery;
@@ -46,8 +48,10 @@ class Login extends AbstractController
             $login = $_SESSION["login"];
         $Comments = Container::getInstance(CommentsBarsQuery::class)->FindCommentsByUsers($login);
         $CommentsBN = Container::getInstance(CommentsBNQuery::class)->FindCommentsByUsers($login);
+        $AnnoncesBars = Container::getInstance(BarsQuery::class)->FindAnnoncesByUsers($login);
+        $AnnoncesBN = Container::getInstance(BNQuery::class)->FindAnnoncesByUsers($login);
         
-        $this->render('login/index', ['level' => $userLevel, 'Comments' => $Comments, 'CommentsBN' => $CommentsBN]);
+        $this->render('login/index', ['level' => $userLevel, 'Comments' => $Comments, 'CommentsBN' => $CommentsBN, 'AnnoncesBars' => $AnnoncesBars, 'AnnoncesBN' => $AnnoncesBN]);
         }
         else {
             $this->render('login/index', ['level' => $userLevel]);
