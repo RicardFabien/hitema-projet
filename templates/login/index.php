@@ -213,6 +213,45 @@ require_once __DIR__ . '/../_inc/nav.php';
             </div>
 
         <?php } ?>
+
+        <?php if ($level == UserQuery::ADMIN_INDICATOR) { ?>
+
+            <center class="mt-5"><h2><u>Section ADMIN</u></h2><br><br><br>
+            
+                <table class="table" style="max-width: 500px;">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Pseudo</th>
+                        <th scope="col">Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                        foreach($allUsers as $Users)
+                            echo'<tr>
+                            <th scope="row">'.$Users['id'].'</th>
+                            <form action="/modifier_user" method="post">
+                            <td><input type="text" name="pseudo" value="'.$Users['login'].'" readonly="readonly"></td>
+                            <td><select class="form-select" name="newlevel">
+                                    <option selected>'.$Users['level'].'</option>
+                                    <option value="user">user</option>
+                                    <option value="host">host</option>
+                                    <option value="admin">admin</option>
+                                </select>
+                                <br>
+                                <button class="btn btn-success" type="submit">Sauvegarder</button>
+                            </form>
+                          </td>
+                            </tr>';
+                    ?>
+                    </tbody>
+                </table>
+                </center>
+
+        <?php } ?>
+            
+
     </div>
 
 

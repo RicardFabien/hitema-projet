@@ -31,6 +31,10 @@ class Routing
             'controller' => 'AnnoncePage',
             'method' => 'show4Best',
         ],
+        '/modifier_user' => [
+            'controller' => 'Login',
+            'method' => 'update',
+        ],
         '/annonces/bars' => [
             'controller' => 'Bars',
             'method' => 'showTableBars',

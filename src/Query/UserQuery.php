@@ -157,5 +157,66 @@ class UserQuery
         return true;
 
     }
+
+    public function showAllUsers()
+    {
+        // requête 
+        $sql = '
+        SELECT * FROM `app_user`';
+
+
+        /*
+            requête préparée
+            création de variables dans la requête avec :
+        */
+
+        
+        
+        $sql .= ';';
+
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute();
+
+        /*
+            récupération des résultats
+                fetchObject : permet d'associer les données à un modèle
+                fetchAll : récupérer plusieurs résultats
+        */
+        $result = $query->fetchAll();
+
+        // retour des résultats 
+        return $result;
+    }
+
+    public function ModifOne(String $pseudo, String $newlevel)
+    {
+        // requête 
+        $sql = '
+            UPDATE app_user
+                SET level = :newlevel
+            WHERE login = :pseudo
+        ';
+
+        $sql .= ';';
+
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute([
+            'pseudo' => $pseudo,
+            'newlevel' => $newlevel,
+        ]);
+
+        $result = $query->fetchAll();
+
+        // retour des résultats 
+        return $result;
+    }
     
 }

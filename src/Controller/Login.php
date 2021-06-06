@@ -50,11 +50,24 @@ class Login extends AbstractController
         $CommentsBN = Container::getInstance(CommentsBNQuery::class)->FindCommentsByUsers($login);
         $AnnoncesBars = Container::getInstance(BarsQuery::class)->FindAnnoncesByUsers($login);
         $AnnoncesBN = Container::getInstance(BNQuery::class)->FindAnnoncesByUsers($login);
+        $allUsers = Container::getInstance(UserQuery::class)->showAllUsers();
         
-        $this->render('login/index', ['level' => $userLevel, 'Comments' => $Comments, 'CommentsBN' => $CommentsBN, 'AnnoncesBars' => $AnnoncesBars, 'AnnoncesBN' => $AnnoncesBN]);
+        $this->render('login/index', ['level' => $userLevel, 'Comments' => $Comments, 'CommentsBN' => $CommentsBN, 'AnnoncesBars' => $AnnoncesBars, 'AnnoncesBN' => $AnnoncesBN, 'allUsers' => $allUsers]);
         }
         else {
             $this->render('login/index', ['level' => $userLevel]);
         }
+    }
+
+    public function update()
+    {
+
+      $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
+
+      if($userLevel === UserQuery::ADMIN_INDICATOR){
+        $modifUser = Container::getInstance(UserQuery::class);
+        $modifUser->ModifOne($_POST['pseudo'], $_POST['newlevel']);
+      }
+      header('location: /login');
     }
 }
