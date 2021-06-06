@@ -95,6 +95,47 @@ class BNQuery
         return $result;
     }
 
+    public function find4Best()
+    {
+        // requête 
+        $sql = '
+        SELECT boites_de_nuit.*, comments_boites_de_nuit.*,AVG(reviews),COUNT(reviews)
+        FROM boites_de_nuit
+        INNER JOIN comments_boites_de_nuit
+        On (boites_de_nuit.id = comments_boites_de_nuit.boites_de_nuit_id)
+         GROUP BY boites_de_nuit_id 
+       ORDER BY `AVG(reviews)`  DESC, COUNT(reviews)
+       
+       LIMIT 4
+        ';
+
+        /*
+            requête préparée
+            création de variables dans la requête avec :
+        */
+
+        
+        
+        $sql .= ';';
+
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute();
+
+        /*
+            récupération des résultats
+                fetchObject : permet d'associer les données à un modèle
+                fetchAll : récupérer plusieurs résultats
+        */
+        $result = $query->fetchAll();
+
+        // retour des résultats 
+        return $result;
+    }
+
     public function insertOne(String $name, String $lieu, float $price, String $description, String $user, String $adress, int $zip_code, int $max_person)
     {
         

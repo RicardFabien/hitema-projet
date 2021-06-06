@@ -30,7 +30,7 @@ class CommentsBN extends AbstractController
         $gameQuery = Container::getInstance(CommentsBNQuery::class);
         $gameQuery->insertOne($_POST['description'], $_POST['reviews'], $_SESSION["login"], $_POST['boites_de_nuit_id']);
       }
-      header('location: /annonces/BN');
+      header('location: /annonces/BN/'.$_POST['boites_de_nuit_id'].'');
     }
 
     public function update()

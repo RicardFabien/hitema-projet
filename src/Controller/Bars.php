@@ -23,6 +23,8 @@ class Bars extends AbstractController
          ]);
     }
 
+   
+
     public function addBars()
     {
       $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();

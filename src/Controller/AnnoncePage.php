@@ -24,6 +24,23 @@ class AnnoncePage extends AbstractController
         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
         $this->render('Annonce/AnnoncePage',["level" => $userLevel]);
     }
+
+    public function show4Best():void
+    {
+         $BarsQuery = Container::getInstance(BarsQuery::class);
+         $BestBars = $BarsQuery->find4Best();
+         $BNQuery = Container::getInstance(BNQuery::class);
+         $BestBN = $BNQuery->find4Best();
+
+         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
+
+         $this->render('Annonce/annoncePage', [
+               'BestBars' => $BestBars,
+               'BestBN' => $BestBN,
+               "level" => $userLevel,
+         ]);
+    }
+
     public function searchBars():void
     {
         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();

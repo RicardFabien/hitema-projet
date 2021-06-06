@@ -29,7 +29,7 @@ class Routing
         ],
         '/annonces' => [
             'controller' => 'AnnoncePage',
-            'method' => 'annoncePage',
+            'method' => 'show4Best',
         ],
         '/annonces/bars' => [
             'controller' => 'Bars',
