@@ -23,6 +23,10 @@
         padding-bottom: 50px;
     }
 
+    .col {
+        display: none;
+    }
+
     .overlay-image 
     {
         position: absolute;
@@ -85,27 +89,6 @@
 		</div>
 		<!-- Carousel -->
 
-        <!-- Pagination -->
-        <div class="container-md d-flex p-2 bd-highlight justify-content-center mt-3">
-            <nav class="row" aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                        </li>
-                        <li class="page-item "><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                        </li>
-                    </ul>
-            </nav>
-        </div>
-        <!-- Pagination -->
         <div class="container-md mt">
             <?php if ($level == UserQuery::HOST_INDICATOR || $level == UserQuery::ADMIN_INDICATOR) { ?>
 
@@ -113,23 +96,27 @@
                 <a href="/annonces/BN/ajouter" class="btn btn-success">Ajouter une annonce</a>
                 <a href="/annonces/BN/modifier" class="btn btn-warning">Modifier une annonce</a>
                 <hr style="max-width: 750px;">
+            
+            <center><div class="row row-cols-1 ">
+
             <?php } ?>
         <?php
             foreach($BN as $BN)
             {
                 $description = str_split($BN['description'], 115);
-                        echo '<div class="card mb-3 border-success bg-light d-flex p-2" style="max-width: 750px;">';
+                    echo '<div class="col">';
+                        echo '<div class="card mb-3 border-success bg-light d-flex p-2 text-start" id="1" style="max-width: 750px;">';
                             echo '<div class="row g-0">';
                                 echo '<div class="col-md-4">'; 
-                                    echo '<img src="https://images.unsplash.com/photo-1596131397999-bb01560efcae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1267&q=80" alt="..." style="max-width: 250px; max-height: 200px;" class="rounded mt-3">';
+                                    echo '<img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" alt="..." style="max-width: 250px;" class="rounded mt-3">';
                                 echo '</div>';
                                 echo '<div class="col-md-8">';
-                                    echo '<div class="card-body text-success">';
+                                    echo '<div class="card-body text-success" >';
                                         echo '<h5 class="card-title">'.$BN['name'].'</h5>';
                                         echo '<p class="card-text">'.$description[0].'...</p>';
                                         echo '<div class="row justify-content-between">';
-                                        echo '<small class="text-muted">Localisation : '.$BN['adress'].' '.$BN['zip_code'].' '.$BN['lieu'].'</small></p>'; 
-                                        echo '<small class="text-muted">Référence : '.$BN['id'].'</small></p>';
+                                            echo '<small class="text-muted">Localisation : '.$BN['adress'].' '.$BN['zip_code'].' '.$BN['lieu'].'</small></p>'; 
+                                            echo '<small class="text-muted">Référence : '.$BN['id'].'</small></p>';
                                             echo '<div class="col-4">';
                                                 echo '<small class="text-muted">Créee le '.$BN['date_creation'].' <br>Par '.$BN['user'].' </small></p>';
                                             echo '</div>';
@@ -141,32 +128,26 @@
                                 echo '</div>';
                             echo '</div>';
                         echo '</div>';
-            }
+                    echo '</div>';
+            }       
         ?>      
+                </div></center>  
                 <hr style="max-width: 750px;">  
             </div>
+            <center><button class ="btn btn-dark" id="btn-load" style="color: green; font-weight: bold;">Charger plus d'annonces</button></center>
         </div>
-        <!-- Pagination -->
-        <div class="container-md d-flex p-2 bd-highlight justify-content-center">
-            <nav class="row" aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                        </li>
-                    </ul>
-            </nav>
-        </div>
-        <!-- Pagination -->    
+   
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(".col").slice(0,3).show()
+$("#btn-load").on("click", function(){
+    $(".col:hidden").slice(0,3).slideDown()
+    if ($(".col:hidden").length == 0) {
+        $("#btn-load").fadeOut('slow')
+    }
+})
+
+</script>
 <?php
 require_once __DIR__ . '/../_inc/footer.php';
 ?>
