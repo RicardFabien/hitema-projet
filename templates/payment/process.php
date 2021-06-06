@@ -11,6 +11,10 @@ require_once __DIR__ . '/../_inc/nav.php';
     <?php if($isValid){
         echo '<div class="alert alert-success" role="alert">L\'operation à réussi</div>';
     } else {
+        if($errorMessage === null || $errorMessage = ""){
+            $errorMessage = "Il y a eu une erreur";
+        }
+
         echo '<div class="alert alert-danger" role="alert">'.$errorMessage.'</div>';
     } ?>
     </div>
