@@ -96,8 +96,12 @@ class CommentsBarsQuery
     {
         // requête 
         $sql = '
-            SELECT *
-            FROM API.comments_bars WHERE user ="'.$login.'"';
+        SELECT bars.*, comments_bars.*
+        FROM bars
+        INNER JOIN comments_bars
+        On (bars.id = comments_bars.Bars_id)
+        WHERE comments_bars.user ="'.$login.'"';
+
 
         /*
             requête préparée

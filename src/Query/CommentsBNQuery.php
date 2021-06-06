@@ -115,8 +115,12 @@ class CommentsBNQuery
     {
         // requête 
         $sql = '
-            SELECT *
-            FROM API.comments_boites_de_nuit WHERE user ="'.$login.'"';
+        SELECT boites_de_nuit.*, comments_boites_de_nuit.*
+        FROM boites_de_nuit
+        INNER JOIN comments_boites_de_nuit
+        On (boites_de_nuit.id = comments_boites_de_nuit.boites_de_nuit_id)
+        WHERE comments_boites_de_nuit.user ="'.$login.'"';
+
 
         /*
             requête préparée
