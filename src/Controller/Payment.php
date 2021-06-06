@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Core\Container;
 use App\Query\BarsQuery;
 use App\Query\BNQuery;
+use App\Query\LocationQuery;
 use App\Query\UserQuery;
 
 use Stripe\Stripe;
@@ -20,21 +21,36 @@ class Payment extends AbstractController
 
         $locationData = false;
 
+        $type = "";
+
         $id = $data["id"];
+
+        $dates =Container::getInstance(LocationQuery::class)->getDates();
 
         if (str_starts_with($id, BarsQuery::BAR_INDICATOR)) {
             $locationData = Container::getInstance(BarsQuery::class)->findOneBy(['id' => ltrim($id, BarsQuery::BAR_INDICATOR)]);
+            $type = BarsQuery::BAR_INDICATOR;
+            $id = ltrim($id, BarsQuery::BAR_INDICATOR);
         } else if (str_starts_with($id, BNQuery::BN_INDICATOR)) {
             $locationData = Container::getInstance(BNQuery::class)->findOneBy(['id' => ltrim($id, BNQuery::BN_INDICATOR)]);
+            $type = BNQuery::BN_INDICATOR;
+            $id = ltrim($id, BNQuery::BN_INDICATOR);
         }
         $userLevel =  Container::getInstance(UserQuery::class)->getStoredUserLevel();
 
 
-        $this->render('payment/index', ["level" => $userLevel, "locationData" => $locationData]);
+        $this->render('payment/index', ["level" => $userLevel, "locationData" => $locationData, "type" => $type, "id" => $id, "dates" => $dates]);
     }
 
     public function process(): void
     {
+        $user_id = Container::getInstance(UserQuery::class)->findOneBy(['login' => $_SESSION['login'] ])->getId();
+
+        $room_id = $_POST["id"];
+        $type = $_POST["type"];
+
+        $location_Date = $_POST["location_date"];
+        $person_number = $_POST["person_number"];
 
         $email = $_POST["email"];
         $name = $_POST["name"];
@@ -117,6 +133,39 @@ class Payment extends AbstractController
             $isValid = false;
         else {
             $isValid = true;
+
+            $bar_Id = null;
+            $bn_Id = null;
+            $price = 0;
+
+            if($type === BarsQuery::BAR_INDICATOR){
+                $bar_Id = $room_id;
+                $bar = Container::getInstance(BarsQuery::class)->findOneBy(["id" => $room_id]);
+
+                if($bar->getPrice() !== null){
+                    $price = $bar->getPrice();
+                }
+
+            }
+
+            if($type === BNQuery::BN_INDICATOR){
+                $bn_Id = $room_id;
+                $bn = Container::getInstance(BNQuery::class)->getOneBy(["id" => $room_id]);
+
+                if(isset($bn->price)){
+                    $price = $bn->price;
+                }
+
+            }
+
+            Container::getInstance(LocationQuery::class)->insertOne(
+                $user_id ,
+                $bar_Id,
+                $bn_Id ,
+                $price ,
+                $location_Date,
+                $person_number
+            );
         }
 
         $this->render('payment/process', ["isValid" => $isValid,"errorMessage" => $userError]);

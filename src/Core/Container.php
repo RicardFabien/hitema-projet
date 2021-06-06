@@ -25,6 +25,8 @@ use App\Controller\Register;
 use App\Model\App_user;
 use App\Query\CommentsBarsQuery;
 use App\Query\CommentsBNQuery;
+use App\Query\LocationQuery;
+
 /*
 require_once __DIR__ ."/../Query/CommentsBNQuerry.php";
 require_once __DIR__ ."/../Query/CommentsBarsQuerry.php";
@@ -100,6 +102,11 @@ class Container
             },
             CommentsBarsQuery::class => function(){ 
                return new \App\Query\CommentsBarsQuery(
+                  self::getInstance(Database::class),
+               );
+            },
+            LocationQuery::class => function(){ 
+               return new \App\Query\LocationQuery(
                   self::getInstance(Database::class),
                );
             },

@@ -39,12 +39,12 @@ CREATE TABLE api.boites_de_nuit (
 
 CREATE TABLE api.Location_salle (
 	location_Id INT auto_increment NOT NULL,
-	User_Id INT NOT NULL,
+	user_Id INT NOT NULL,
 	bar_Id INT,
   bn_Id INT,
   price FLOAT  NOT NULL,
-	locationDebut DATETIME NOT NULL,
-	locationFin DATETIME NOT NULL,
+	location_Date DATETIME NOT NULL,
+  person_nbr INT,
 	CONSTRAINT Location_PK PRIMARY KEY (location_Id),
   CONSTRAINT Location_FK FOREIGN KEY (User_Id) REFERENCES App_user(id),
 	CONSTRAINT Location_FK_1 FOREIGN KEY (bar_Id) REFERENCES bars(id),
@@ -79,4 +79,20 @@ INSERT INTO App_user
 VALUE ( NULL, 'admin', '$argon2i$v=19$m=16,t=2,p=1$bWVGVkRJNVljczVLbjJUcQ$kpHdZUT8h+851aKEVnmWGw','admin' );
 
 INSERT INTO bars
-VALUE(NULL,"Le bar","Paris",10,CURRENT_DATE(),"Un bar tout ce qu'il y a de plus normal");
+VALUE(NULL,"Le bar","Paris",10,CURRENT_DATE(),"Un bar tout ce qu'il y a de plus normal","admin", "Une adresse",111,100);
+
+CREATE TABLE `calendar` (
+`cdate` date NOT NULL,
+PRIMARY KEY (`cdate`)
+) ;
+
+CREATE TABLE ints (i INTEGER);
+INSERT INTO ints VALUES (0), (1), (2), (3), (4), (5), (6), (7), (8), (9);
+
+INSERT INTO calendar (cdate)
+SELECT cal.date as cdate
+FROM (
+SELECT '2005-01-01' + INTERVAL d.i*1000 + c.i* 100 + a.i * 10 + b.i DAY as date
+FROM ints a JOIN ints b JOIN ints c JOIN ints d
+ORDER BY d.i*1000 + c.i*100 + a.i*10 + b.i) cal
+WHERE cal.date BETWEEN '2005-01-01' AND '2030-12-31' 

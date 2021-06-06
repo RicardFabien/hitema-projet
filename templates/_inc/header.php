@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
         <script src="https://kit.fontawesome.com/62c0a1fec0.js" crossorigin="anonymous"></script>
 
-		<title>Hello, world!</title>
+		<title>Nightlife</title>
 
         <style>
             body {
