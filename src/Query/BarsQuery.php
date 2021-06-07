@@ -254,7 +254,7 @@ class BarsQuery
         // exécution de la requête
         // donner des valeurs aux variables de requête avec un array associatif
         $query->execute([
-            'id' => $id
+            'id' => $id,
         ]);
 
         $result = $query->fetchAll();
