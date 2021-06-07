@@ -23,6 +23,10 @@
         padding-bottom: 50px;
     }
 
+    #nb::placeholder {
+        color: white;
+    }
+
     .overlay-image 
     {
         position: absolute;
@@ -59,20 +63,20 @@
 						<div class="carousel-caption text-center">
                         <form class="d-flex p-2 bd-highlight justify-content-center" action="#" method="GET">
                             <div class="d-grid">
-                                <select class="form-select btn-success mb-1" style="width: 10rem;" name="Ville">
-                                    <option selected>Ville</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                            <select class="form-select btn-success mb-1" style="width: 10rem;" name="lieu">
+                                    <option selected>Département</option>
+                                    <option value="Essonne">Essonne</option>
+                                    <option value="Hauts-de-Seine">Hauts-de-Seine</option>
+                                    <option value="Paris">Paris</option>
+                                    <option value="Seine-et-Marne">Seine-et-Marne</option>
+                                    <option value="Seine-Saint-Denis">Seine-Saint-Denis</option>
+                                    <option value="Val-de-Marne">Val-de-Marne</option>
+                                    <option value="Val-d'Oise">Val-d'Oise</option>
+                                    <option value="Yvelines">Yvelines</option>
                                 </select>
-                                <select class="form-select btn-success mb-1" style="width: 10rem;" name="nbParticipants">
-                                    <option selected>Participants</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                                <input type="number" class="btn-success mb-1 rounded p-1" id="nb" placeholder="Nb. de participants" name="nbParticipants" min="3" style="width: 10rem;">
+
                                 <div class="input-group mb-3"  id="datetimepicker" style="width: 10rem;">
-                                    <input placeholder="dd/mm/yyyy" type="date" id="date-picker-example" class="form-control btn-success" name="date">
                                 </div>
                                 <button type="submit" class="btn btn-success" style="width: 10rem;">Rechercher</button>
                             </div>
