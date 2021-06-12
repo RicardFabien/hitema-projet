@@ -236,6 +236,31 @@ class BNQuery
         // retour des résultats 
         return $result;
     }
+
+    public function FindByFilter(String $departement, int $nbmax)
+    {
+        // requête 
+        $sql = '
+            SELECT * FROM API.boites_de_nuit WHERE lieu = :departement and max_person > :nbmax
+        ';
+
+        $sql .= ';';
+
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute([
+            'departement' => $departement,
+            "nbmax" => $nbmax,
+        ]);
+
+        $result = $query->fetchAll();
+
+        // retour des résultats 
+        return $result;
+    }
     
 
     public function FindAnnoncesByUsers(String $login)

@@ -61,7 +61,7 @@
 					<div class="overlay-image" style="background-image:url(https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1267&q=80);"></div> 
 					<div class="container">
 						<div class="carousel-caption text-center">
-                        <form class="d-flex p-2 bd-highlight justify-content-center" action="#" method="GET">
+                        <form class="d-flex p-2 bd-highlight justify-content-center" action="/annonces/bars" method="POST">
                             <div class="d-grid">
                             <select class="form-select btn-success mb-1" style="width: 10rem;" name="lieu">
                                     <option selected>Département</option>
@@ -106,7 +106,67 @@
             <center><div class="row row-cols-1">
                 
             <?php } ?>
+
+            <?php if ($level == UserQuery::USER_INDICATOR || $level == UserQuery::VISITOR_INDICATOR) { ?>
+
+            <div class="container-md d-flex p-2 bd-highlight row gy-2 justify-content-center">
+                <div class="alert alert-info" role="alert">
+                    <center>Pour accéder à ces fonctionnalités, connectez vous en tant que partenaire.</center>
+                </div>
+                <a href="/annonces/BN/ajouter" class="btn btn-success disabled" >Ajouter une annonce</a>
+                <a href="/annonces/BN/modifier" class="btn btn-warning disabled" >Modifier une annonce</a>
+                <hr style="max-width: 750px;">
+            
+            <center><div class="row row-cols-1 ">
+
+            <?php } ?>
         <?php
+        error_reporting(0);
+        if($_POST['lieu'] != "" && $_POST['nbParticipants'] != "")
+            {
+                if(empty($var) == false)
+                {
+                    foreach($Filter as $Filter)
+                    {
+                    $description = str_split($Filter['description'], 115);
+                        echo '<div class="col">';
+                            echo '<div class="card mb-3 border-success bg-light d-flex p-2 text-start" id="1" style="max-width: 750px;">';
+                                echo '<div class="row g-0">';
+                                    echo '<div class="col-md-4">'; 
+                                        echo '<img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" alt="..." style="max-width: 250px;" class="rounded mt-3">';
+                                    echo '</div>';
+                                    echo '<div class="col-md-8">';
+                                        echo '<div class="card-body text-success" >';
+                                            echo '<h5 class="card-title">'.$Filter['name'].'</h5>';
+                                            echo '<p class="card-text">'.$description[0].'...</p>';
+                                            echo '<div class="row justify-content-between">';
+                                                echo '<small class="text-muted">Localisation : '.$Filter['adress'].' '.$Filter['zip_code'].' '.$Filter['lieu'].'</small></p>'; 
+                                                echo '<small class="text-muted">Référence : '.$Filter['id'].'</small></p>';
+                                                echo '<div class="col-4">';
+                                                    echo '<small class="text-muted">Créee le '.$Filter['date_creation'].' <br>Par '.$Filter['user'].' </small></p>';
+                                                echo '</div>';
+                                                echo '<div class="col-4">';
+                                                    echo '<a class="btn btn-outline-success me-2" type="button" href="/annonces/Bars/'.$Filter['id'].'">Voir l\'annonce</a>';
+                                                echo '</div>';
+                                            echo '</div>';
+                                        echo '</div>';
+                                    echo '</div>';
+                                echo '</div>';
+                            echo '</div>';
+                        echo '</div>';
+                    } 
+                }
+                else
+                {
+                    echo   '<div class="alert alert-info" role="alert">
+                                Aucune annonce trouvé avec vos critères
+                            </div>
+                            ';
+                } 
+        }
+
+        else
+            {
             foreach($Bars as $Bars)
             {
                 $description = str_split($Bars['description'], 115);
@@ -136,7 +196,7 @@
                         echo '</div>';
                     echo '</div>';
             }       
-                
+        }   
         ?>   
                 </div></center>  
                 <hr style="max-width: 750px;">  

@@ -12,15 +12,20 @@ class Bars extends AbstractController
 {
     public function showTableBars():void
     {
-         $BarsQuery = Container::getInstance(BarsQuery::class);
-         $Bars = $BarsQuery->findAll();
+        $BarsQuery = Container::getInstance(BarsQuery::class);
+        $Bars = $BarsQuery->findAll();
+        error_reporting(0);
+        if($_POST['lieu'] != "" && $_POST['nbParticipants'] != "") {
+          $Filter = $BarsQuery->FindByFilter($_POST['lieu'], $_POST['nbParticipants']);
+        }
+        error_reporting(1);
+        $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
 
-         $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
-
-         $this->render('Annonce/searchBars', [
+        $this->render('Annonce/searchBars', [
                'Bars' => $Bars,
                "level" => $userLevel,
-         ]);
+               "Filter" => $Filter,
+        ]);
     }
 
    
