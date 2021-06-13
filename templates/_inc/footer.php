@@ -23,7 +23,7 @@
 			<div class="col-md">
 				<h5 style="color: #198754;" style="margin-right: 50px;">À propos</h5>
 				<ul class="list-unstyled text-small">
-				<li><a class="link-secondary" href="#">Qui sommes-nous ?</a></li>
+				<li><a class="link-secondary" href="/quiNous">Qui sommes-nous ?</a></li>
 				<li><a class="link-secondary" href="/contact">Contact</a></li>
 				</ul>
 			</div>
