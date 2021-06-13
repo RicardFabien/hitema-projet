@@ -14,7 +14,7 @@ require_once __DIR__ . '/../_inc/nav.php';
         if($errorMessage === null || $errorMessage = ""){
             $errorMessage = "Il y a eu une erreur";
         }
-
+        var_dump($errorMessage);
         echo '<div class="alert alert-danger" role="alert">'.$errorMessage.'</div>';
     } ?>
     </div>
