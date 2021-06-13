@@ -62,6 +62,9 @@ class Container
             ContactPage::class => function(){ 
                return new \App\Controller\ContactPage();
             },
+            QuiNousPage::class => function () {
+            return new \App\Controller\QuiNousPage();
+             },
              Login::class => function(){ 
                return new \App\Controller\Login();
              },
