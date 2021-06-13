@@ -151,6 +151,7 @@ class UserQuery
 
         $query->execute($args);
 
+        $_SESSION["id"] = $this->findOneBy(["login" => $login]);
         $_SESSION["login"] = $login;
         $_SESSION["password"] = $password;
 

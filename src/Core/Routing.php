@@ -147,6 +147,10 @@ class Routing
             'controller' => 'Payment',
             'method' => 'process'
         ],
+        "/legal" => [
+            'controller' => 'Legal',
+            'method' => 'index'
+        ],
         
         /*
             utilisation d'une expression rationnelle

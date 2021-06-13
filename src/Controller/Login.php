@@ -30,6 +30,7 @@ class Login extends AbstractController
 
             $_SESSION["login"] = $_POST["login"];
             $login = $_SESSION["login"];
+            $_SESSION["id"] = Container::getInstance(UserQuery::class)->findOneBy(["login" => $login]);
         }
 
 

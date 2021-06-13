@@ -19,6 +19,7 @@ use App\Controller\Bars;
 use App\Controller\CommentsBars;
 use App\Controller\CommentsBN;
 use App\Controller\ContactPage;
+use App\Controller\Legal;
 use App\Controller\Payment;
 use App\Query\BarsQuery;
 use App\Controller\Register;
@@ -72,6 +73,9 @@ class Container
              },
              Payment::class => function(){ 
                return new \App\Controller\Payment();
+             },
+             Legal::class => function(){ 
+               return new \App\Controller\Legal();
              },
             BN::class => function(){ 
                return new \App\Controller\BN();
