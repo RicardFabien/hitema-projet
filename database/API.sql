@@ -20,7 +20,8 @@ CREATE TABLE api.bars (
   FOREIGN KEY (user) REFERENCES API.app_user(login),
   adress VARCHAR(50) NOT NULL,
   zip_code int(7) NOT NULL,
-  max_person int(4) NOT NULL
+  max_person int(4) NOT NULL,
+  image VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE api.boites_de_nuit (
@@ -35,6 +36,7 @@ CREATE TABLE api.boites_de_nuit (
   adress VARCHAR(50) NOT NULL,
   zip_code int(7) NOT NULL,
   max_person int(4) NOT NULL
+  image VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE api.Location_salle (

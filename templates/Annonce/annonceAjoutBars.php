@@ -61,7 +61,7 @@
 
         <div class="mb-3 mt-2">
             <label class="form-label" for="customFile">Image de votre établissement</label>
-            <input type="file" class="form-control" id="customFile" data-show-preview="true"/>
+            <input type="file" class="form-control" id="customFile" data-show-preview="true" name="image"/>
         </div>
 
         <button type="submit" class="btn btn-success mt-2">Ajouter l'annonce</button>
