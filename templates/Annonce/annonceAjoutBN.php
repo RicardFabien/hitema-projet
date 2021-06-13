@@ -10,7 +10,7 @@
     <hr>
     <h1>Ajouter une annonce [Boîtes de nuit]</h1>
     <?php if ($level == UserQuery::HOST_INDICATOR || $level == UserQuery::ADMIN_INDICATOR) { ?>
-    <form method="post" action="/annonces/BN/add">
+    <form method="post" action="/annonces/BN/add" enctype="multipart/form-data">
    
         <div class="mb-3">
             <label class="form-label">Titre</label>
@@ -58,6 +58,12 @@
             <label for="exampleInputEmail1" class="form-label">Description</label>
             <textarea type="email" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" name="description" placeholder="Description de l'annonce"></textarea>
         </div>
+
+        <div class="mb-3 mt-2">
+            <label class="form-label" for="customFile">Image de votre établissement</label>
+            <input type="file" class="form-control" id="customFile" data-show-preview="true" name="file"/>
+        </div>
+
         <button type="submit" class="btn btn-success mt-2">Ajouter l'annonce</button>
     </form>
     <?php } else{ ?>

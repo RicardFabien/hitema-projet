@@ -136,11 +136,11 @@ class BNQuery
         return $result;
     }
 
-    public function insertOne(String $name, String $lieu, float $price, String $description, String $user, String $adress, int $zip_code, int $max_person)
+    public function insertOne(String $name, String $lieu, float $price, String $description, String $user, String $adress, int $zip_code, int $max_person, String $image)
     {
         
         $sql = "INSERT INTO API.boites_de_nuit
-                    VALUES ('null', :name, :lieu, :price, NOW(), :description, :user, :adress, :zip_code, :max_person )";
+                    VALUES ('null', :name, :lieu, :price, NOW(), :description, :user, :adress, :zip_code, :max_person, :image )";
         
         // préparation de la requête
         $query = $this->connection->prepare($sql);
@@ -156,6 +156,7 @@ class BNQuery
             'adress' => $adress,
             'zip_code' => $zip_code,
             'max_person' => $max_person,
+            'image' => $image,
         ]);
     }
 

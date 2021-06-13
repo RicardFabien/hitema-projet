@@ -34,7 +34,13 @@ class BN extends AbstractController
 
       if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
         $gameQuery = Container::getInstance(BNQuery::class);
-        $gameQuery->insertOne($_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description'], $_SESSION["login"], $_POST['adress'], $_POST['zip_code'] , $_POST['max_person']);
+        if( $_FILES['file']['name'] != "" ) {
+          $temp = explode(".", $_FILES["file"]["name"]);
+          $path = round(microtime(true)) . '.' . end($temp);
+          $gameQuery->insertOne($_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description'], $_SESSION["login"], $_POST['adress'], $_POST['zip_code'], $_POST['max_person'],$path);
+          $pathto="admin/image/".$path;
+          move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
+        }
       }
       header('location: /annonces/BN');
     }
