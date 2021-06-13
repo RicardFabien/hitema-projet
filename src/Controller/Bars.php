@@ -36,9 +36,7 @@ class Bars extends AbstractController
 
       if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
         $gameQuery = Container::getInstance(BarsQuery::class);
-        $gameQuery->insertOne($_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description'], $_SESSION["login"], $_POST['adress'], $_POST['zip_code'], $_POST['max_person'],$_POST['image']);
-        $name = basename($_FILES["image"]["name"]);
-        move_uploaded_file($_FILES['image'], "/admin/image/$name");
+        $gameQuery->insertOne($_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description'], $_SESSION["login"], $_POST['adress'], $_POST['zip_code'], $_POST['max_person'],$_FILES['image']['name']);
       }
       
       header('location: /annonces/bars');

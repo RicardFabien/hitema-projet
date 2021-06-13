@@ -3,6 +3,7 @@
 	require_once __DIR__ . '/../_inc/nav.php';
 
     use App\Query\UserQuery;
+
 ?>
 
 <div class="container-md d-flex p-2 bd-highlight justify-content-center mt-3" >
@@ -10,7 +11,7 @@
     <hr>
     <h1>Ajouter une annonce [Bars]</h1>
     <?php if ($level == UserQuery::HOST_INDICATOR || $level == UserQuery::ADMIN_INDICATOR) { ?>
-    <form method="post" action="/annonces/bars/add">
+    <form method="post" action="/annonces/bars/add" enctype="multipart/form-data">
    
         <div class="mb-3">
             <br><label class="form-label">Titre</label>
