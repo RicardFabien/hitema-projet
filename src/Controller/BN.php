@@ -16,9 +16,15 @@ class BN extends AbstractController
 
          $BNQuery = Container::getInstance(BNQuery::class);
          $BN = $BNQuery->findAll();
+         error_reporting(0);
+        if($_POST['lieu'] != "" && $_POST['nbParticipants'] != "") {
+          $Filter = $BNQuery->FindByFilter($_POST['lieu'], $_POST['nbParticipants']);
+        }
+        error_reporting(1);
          $this->render('Annonce/searchBN', [
                'BN' => $BN,
-               "level" => $userLevel
+               "level" => $userLevel,
+               "Filter" => $Filter,
          ]);
     }
 

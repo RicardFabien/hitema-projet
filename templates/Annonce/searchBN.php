@@ -23,6 +23,10 @@
         padding-bottom: 50px;
     }
 
+    #nb::placeholder {
+        color: white;
+    }
+
     .col {
         display: none;
     }
@@ -56,22 +60,21 @@
 					<div class="overlay-image" style="background-image:url(https://images.unsplash.com/photo-1570872626485-d8ffea69f463?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80);"></div> 
 					<div class="container">
 						<div class="carousel-caption text-center">
-                        <form class="d-flex p-2 bd-highlight justify-content-center" action="#" method="GET">
+                        <form class="d-flex p-2 bd-highlight justify-content-center" action="/annonces/BN" method="post">
                             <div class="d-grid">
-                                <select class="form-select btn-success mb-1" style="width: 10rem;" name="Ville">
-                                    <option selected>Ville</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <select class="form-select btn-success mb-1" style="width: 10rem;" name="lieu">
+                                    <option selected>Département</option>
+                                    <option value="Essonne">Essonne</option>
+                                    <option value="Hauts-de-Seine">Hauts-de-Seine</option>
+                                    <option value="Paris">Paris</option>
+                                    <option value="Seine-et-Marne">Seine-et-Marne</option>
+                                    <option value="Seine-Saint-Denis">Seine-Saint-Denis</option>
+                                    <option value="Val-de-Marne">Val-de-Marne</option>
+                                    <option value="Val-d'Oise">Val-d'Oise</option>
+                                    <option value="Yvelines">Yvelines</option>
                                 </select>
-                                <select class="form-select btn-success mb-1" style="width: 10rem;" name="nbParticipants">
-                                    <option selected>Participants</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
+                                <input type="number" class="btn-success mb-1 rounded p-1" id="nb" placeholder="Nb. de participants" name="nbParticipants" min="3" style="width: 10rem;">
                                 <div class="input-group mb-3"  id="datetimepicker" style="width: 10rem;">
-                                    <input placeholder="dd/mm/yyyy" type="date" id="date-picker-example" class="form-control btn-success" name="date">
                                 </div>
                                 <button type="submit" class="btn btn-success" style="width: 10rem;">Rechercher</button>
                             </div>
@@ -100,7 +103,67 @@
             <center><div class="row row-cols-1 ">
 
             <?php } ?>
+
+            <?php if ($level == UserQuery::USER_INDICATOR || $level == UserQuery::VISITOR_INDICATOR) { ?>
+
+            <div class="container-md d-flex p-2 bd-highlight row gy-2 justify-content-center">
+                <div class="alert alert-info" role="alert">
+                    <center>Pour accéder à ces fonctionnalités, connectez vous en tant que partenaire.</center>
+                </div>
+                <a href="/annonces/BN/ajouter" class="btn btn-success disabled" >Ajouter une annonce</a>
+                <a href="/annonces/BN/modifier" class="btn btn-warning disabled" >Modifier une annonce</a>
+                <hr style="max-width: 750px;">
+            
+            <center><div class="row row-cols-1 ">
+
+            <?php } ?>
         <?php
+            error_reporting(0);
+        if($_POST['lieu'] != "" && $_POST['nbParticipants'] != "")
+            {
+                if(empty($var) == false)
+                {
+                    foreach($Filter as $Filter)
+                    {
+                    $description = str_split($Filter['description'], 115);
+                        echo '<div class="col">';
+                            echo '<div class="card mb-3 border-success bg-light d-flex p-2 text-start" id="1" style="max-width: 750px;">';
+                                echo '<div class="row g-0">';
+                                    echo '<div class="col-md-4">'; 
+                                        echo '<img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" alt="..." style="max-width: 250px;" class="rounded mt-3">';
+                                    echo '</div>';
+                                    echo '<div class="col-md-8">';
+                                        echo '<div class="card-body text-success" >';
+                                            echo '<h5 class="card-title">'.$Filter['name'].'</h5>';
+                                            echo '<p class="card-text">'.$description[0].'...</p>';
+                                            echo '<div class="row justify-content-between">';
+                                                echo '<small class="text-muted">Localisation : '.$Filter['adress'].' '.$Filter['zip_code'].' '.$Filter['lieu'].'</small></p>'; 
+                                                echo '<small class="text-muted">Référence : '.$Filter['id'].'</small></p>';
+                                                echo '<div class="col-4">';
+                                                    echo '<small class="text-muted">Créee le '.$Filter['date_creation'].' <br>Par '.$Filter['user'].' </small></p>';
+                                                echo '</div>';
+                                                echo '<div class="col-4">';
+                                                    echo '<a class="btn btn-outline-success me-2" type="button" href="/annonces/Bars/'.$Filter['id'].'">Voir l\'annonce</a>';
+                                                echo '</div>';
+                                            echo '</div>';
+                                        echo '</div>';
+                                    echo '</div>';
+                                echo '</div>';
+                            echo '</div>';
+                        echo '</div>';
+                    } 
+                }
+                else
+                {
+                    echo   '<div class="alert alert-info" role="alert">
+                                Aucune annonce trouvé avec vos critères
+                            </div>
+                            ';
+                }
+        }
+
+        else
+            {
             foreach($BN as $BN)
             {
                 $description = str_split($BN['description'], 115);
@@ -108,7 +171,7 @@
                         echo '<div class="card mb-3 border-success bg-light d-flex p-2 text-start" id="1" style="max-width: 750px;">';
                             echo '<div class="row g-0">';
                                 echo '<div class="col-md-4">'; 
-                                    echo '<img src="https://images.unsplash.com/photo-1596131397999-bb01560efcae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1267&q=80" alt="..." style="max-width: 250px;" class="rounded mt-3">';
+                                    echo '<img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" alt="..." style="max-width: 250px;" class="rounded mt-3">';
                                 echo '</div>';
                                 echo '<div class="col-md-8">';
                                     echo '<div class="card-body text-success" >';
@@ -121,7 +184,7 @@
                                                 echo '<small class="text-muted">Créee le '.$BN['date_creation'].' <br>Par '.$BN['user'].' </small></p>';
                                             echo '</div>';
                                             echo '<div class="col-4">';
-                                                echo '<a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'.$BN['id'].'">Voir l\'annonce</a>';
+                                                echo '<a class="btn btn-outline-success me-2" type="button" href="/annonces/Bars/'.$BN['id'].'">Voir l\'annonce</a>';
                                             echo '</div>';
                                         echo '</div>';
                                     echo '</div>';
@@ -130,6 +193,7 @@
                         echo '</div>';
                     echo '</div>';
             }       
+        }       
         ?>      
                 </div></center>  
                 <hr style="max-width: 750px;">  
