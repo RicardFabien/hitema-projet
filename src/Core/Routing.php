@@ -27,6 +27,10 @@ class Routing
             'controller' => 'ContactPage',
             'method' => 'index',
         ],
+        '/quiNous' => [
+            'controller' => 'QuiNousPage',
+            'method' => 'index',
+        ],
         '/annonces' => [
             'controller' => 'AnnoncePage',
             'method' => 'show4Best',
