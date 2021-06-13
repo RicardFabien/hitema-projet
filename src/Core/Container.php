@@ -19,6 +19,7 @@ use App\Controller\Bars;
 use App\Controller\CommentsBars;
 use App\Controller\CommentsBN;
 use App\Controller\ContactPage;
+use App\Controller\QuiNousPage;
 use App\Controller\Legal;
 use App\Controller\Payment;
 use App\Query\BarsQuery;
