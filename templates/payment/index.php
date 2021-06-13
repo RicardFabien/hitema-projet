@@ -15,10 +15,11 @@ require_once __DIR__ . '/../_inc/nav.php';
     <?php } else if (!isset($locationData) || $locationData === false ) { ?>
         Cette annonce n'existe pas
     <?php } else if(isset($locationData) || $locationData !== false) { ?>
-        
-        <p>Etablissement : <?php echo $locationData->getName() ?></p>
-        <p>Prix : <?php echo $locationData->getPrice() ?> euro</p>
         <div class="container">
+            <p>Etablissement : <?php echo $locationData->getName() ?></p>
+            <p>Prix : <?php echo $locationData->getPrice() ?> euro</p>
+        </div>
+        <div class="container border">
             <form method="POST" action="/payment_processing" id = "payment-form" >
                 <div class="form-group">
                     <input type="hidden" name = "type" value = <?php echo $type ?> />
@@ -55,7 +56,7 @@ require_once __DIR__ . '/../_inc/nav.php';
                     </select> 
 
                     <br/>
-                    <label>En cliquant sur "Confirmer", vous accepter <a href = "/data-treatment">notre traitement des données</a></label>
+                    <label>En cliquant sur "Confirmer", vous accepter <a href = "/legal"target="_blank" >notre traitement des données</a></label>
                     <input type="checkbox" class="form-check-input" required/>
                     <br/>
                     <input type="submit" value = "Confirmer"/>
