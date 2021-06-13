@@ -80,9 +80,6 @@ CREATE TABLE api.comments_boites_de_nuit (
 INSERT INTO App_user
 VALUE ( NULL, 'admin', '$argon2i$v=19$m=16,t=2,p=1$bWVGVkRJNVljczVLbjJUcQ$kpHdZUT8h+851aKEVnmWGw','admin' );
 
-INSERT INTO bars
-VALUE(NULL,"Le bar","Paris",10,CURRENT_DATE(),"Un bar tout ce qu'il y a de plus normal","admin", "Une adresse",111,100);
-
 CREATE TABLE `calendar` (
 `cdate` date NOT NULL,
 PRIMARY KEY (`cdate`)
