@@ -47,6 +47,30 @@ class Routing
             'controller' => 'BN',
             'method' => 'updateBN',
         ],
+        '/modifier_commentbars' => [
+            'controller' => 'CommentsBars',
+            'method' => 'updateComment',
+        ],
+        '/modifier_commentbn' => [
+            'controller' => 'CommentsBN',
+            'method' => 'updateComment',
+        ],
+        '/supprimer_commentbn' => [
+            'controller' => 'CommentsBN',
+            'method' => 'deleteComment',
+        ],
+        '/supprimer_commentbars' => [
+            'controller' => 'CommentsBars',
+            'method' => 'deleteComment',
+        ],
+        '/supprimer_ADbars' => [
+            'controller' => 'Bars',
+            'method' => 'deleteByADUser',
+        ],
+        '/supprimer_ADbn' => [
+            'controller' => 'BN',
+            'method' => 'deleteByADUser',
+        ],
         '/annonces/bars' => [
             'controller' => 'Bars',
             'method' => 'showTableBars',

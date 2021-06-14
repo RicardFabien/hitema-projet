@@ -372,5 +372,23 @@ class BarsQuery
     }
 
 
+    public function deleteByADUser(String $user, int $Bars_id)
+    {
+        
+        $sql = "DELETE FROM `comments_bars`
+            WHERE Bars_id = :Bars_id;
+            DELETE FROM `bars`
+            WHERE id = :Bars_id and user = user;";
+        
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute([
+            'user' => $user,
+            'Bars_id' => $Bars_id,
+        ]);
+    }
 
 }

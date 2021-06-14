@@ -76,4 +76,16 @@ class BN extends AbstractController
       }
       header('location: /login');
     }
+
+    public function deleteByADUser()
+    {
+
+      $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
+
+      if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
+        $gameQuery = Container::getInstance(BNQuery::class);
+        $gameQuery->deleteByADUser($_SESSION["login"], $_POST['id']);
+      }
+      header('location: /login');
+    }
 }

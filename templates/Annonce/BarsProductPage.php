@@ -73,7 +73,6 @@
                 echo  '<p>'.$Comments['comment_description'].'</p>
                 <img src="'.$img.'" class="img-fluid" style="max-width: 30px;">
                 <small class="text-muted">Commentaires de '.$Comments['user'].' écrit le '.$Comments['date_creation'].'</small>
-                azdazdz
                 <hr>';
               }
           }

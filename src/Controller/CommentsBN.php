@@ -33,14 +33,26 @@ class CommentsBN extends AbstractController
       header('location: /annonces/BN/'.$_POST['boites_de_nuit_id'].'');
     }
 
-    public function update()
+    public function updateComment()
     {
       $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
 
       if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::USER_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
         $gameQuery = Container::getInstance(CommentsBNQuery::class);
-        $gameQuery->ModifOne($_POST['id'], $_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description']);
+        $gameQuery->updateByUser($_POST['description'], $_POST['reviews'], $_SESSION["login"], $_POST['id']);
       }
-      header('location: /annonces/CommentsBN');
+      header('location: /login');
+    }
+
+
+    public function deleteComment()
+    {
+      $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
+
+      if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::USER_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
+        $gameQuery = Container::getInstance(CommentsBNQuery::class);
+        $gameQuery->deleteByUser($_SESSION["login"], $_POST['id']);
+      }
+      header('location: /login');
     }
 }

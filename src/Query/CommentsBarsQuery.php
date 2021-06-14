@@ -149,8 +149,43 @@ class CommentsBarsQuery
         ]);
     }
 
-    
+    public function updateByUser(String $description, int $reviews, String $user, int $comment_id)
+    {
+        
+        $sql = " UPDATE API.comments_bars
+            SET comment_description = :description, reviews = :reviews
+            WHERE comment_id = :comment_id and user = :user";
+        
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
 
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute([
+            'description' => $description,
+            'reviews' => $reviews,
+            'user' => $user,
+            'comment_id' => $comment_id,
+        ]);
+    }
+
+    
+    public function deleteByUser(String $user, int $comment_id)
+    {
+        
+        $sql = "DELETE FROM `comments_bars`
+            WHERE comment_id = :comment_id and user = :user";
+        
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute([
+            'user' => $user,
+            'comment_id' => $comment_id,
+        ]);
+    }
     
 
     

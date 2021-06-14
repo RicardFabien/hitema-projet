@@ -371,4 +371,23 @@ class BNQuery
     }
 
 
+    public function deleteByADUser(String $user, int $BN_id)
+    {
+        
+        $sql = "DELETE FROM `comments_boites_de_nuit`
+            WHERE boites_de_nuit_id = :BN_id;
+            DELETE FROM `boites_de_nuit`
+            WHERE id = :BN_id and user = user;";
+        
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute([
+            'user' => $user,
+            'BN_id' => $BN_id,
+        ]);
+    }
+
 }

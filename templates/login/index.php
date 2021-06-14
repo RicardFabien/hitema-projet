@@ -88,14 +88,27 @@ require_once __DIR__ . '/../_inc/nav.php';
                             <?php
                             if (isset($Comments)) {
                                 foreach ($Comments as $Comments) {
-                                    echo '<tr class="t2">
+                                    echo '
+                                    <form method="post" action="/modifier_commentbars" enctype="multipart/form-data">
+                                        <tr class="t2">
                                             <td class="w-25">
-                                                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" class="img-fluid img-thumbnail" alt="Sheep">
+                                                <img src="/admin/image/'.$Comments['image'].'" class="img-fluid img-thumbnail" alt="Sheep">
                                             </td>
-                                            <td><h2>'.$Comments['name'].'</h2><a class="btn btn-outline-success me-2" type="button" href="/annonces/Bars/'. $Comments['Bars_id'] . '">Voir l\'annnonce</a><br><br>' . $Comments['comment_description'] . '</td>
-                                            
-                    
-                                        </tr>';
+                                            <td><h2>'.$Comments['name'].'</h2><a class="btn btn-outline-success me-2" type="button" href="/annonces/Bars/'. $Comments['Bars_id'] . '">Voir l\'annnonce</a><br><br>
+                                                <div class="row">
+                                                    <div class="col ms-2 "><label>Commentaire :</label><br><textarea type="text"  class="form-label my-3 p-3 " name ="description" required>'.$Comments['comment_description'].'</textarea></div>
+                                                    <div class="col ms-2 "><label>Note :</label><input type="number" step="1" min="1" max="5" class="form-control form-control-lg mt-3" value="'.$Comments['reviews'].'" name="reviews"></div>
+                                                    <input type="number" step="0.01" class="form-control form-control-lg mb-3" value="'.$Comments['comment_id'].'" name="id" hidden>
+                                                    <div class="col ms-2 "><button class="btn btn-success " type="submit">Sauvegarder</button></div>
+                                    </form>
+                                    <form method="post" action="/supprimer_commentbars" enctype="multipart/form-data">
+                                                    <input type="number" step="0.01" class="form-control form-control-lg mb-3" value="'.$Comments['comment_id'].'" name="id" readonly hidden>
+                                                    <div class="col ms-2 "><button class="btn btn-danger " type="submit">Supprimer</button></div>
+                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                    ';
                                 }
                             }
                             ?>
@@ -121,13 +134,27 @@ require_once __DIR__ . '/../_inc/nav.php';
                             <?php
                             if (isset($CommentsBN)){
                                 foreach ($CommentsBN as $CommentsBN) {
-                                    echo '<tr class="t1">
-                                            <td class="w-25">
-                                                <img src="https://images.unsplash.com/photo-1596131397999-bb01560efcae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1267&q=80" class="img-fluid img-thumbnail" alt="Sheep">
-                                            </td>
-                                            <td><h2>'.$CommentsBN['name'].'</h2><a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'. $CommentsBN['boites_de_nuit_id'] . '">Voir l\'annnonce</a><br><br>' . $CommentsBN['comment_description'] . '</td>
-                    
-                                        </tr>';
+                                echo '
+                                <form method="post" action="/modifier_commentbn" enctype="multipart/form-data">
+                                    <tr class="t1">
+                                        <td class="w-25">
+                                            <img src="/admin/image/'.$CommentsBN['image'].'" class="img-fluid img-thumbnail" alt="Sheep">
+                                        </td>
+                                        <td><h2>'.$CommentsBN['name'].'</h2><a class="btn btn-outline-success me-2" type="button" href="/annonces/Bars/'. $CommentsBN['boites_de_nuit_id'] . '">Voir l\'annnonce</a><br><br>
+                                            <div class="row">
+                                                <div class="col ms-2 "><label>Commentaire :</label><br><textarea type="text"  class="form-label my-3 p-3 " name ="description" required>'.$CommentsBN['comment_description'].'</textarea></div>
+                                                <div class="col ms-2 "><label>Note :</label><input type="number" step="1" min="1" max="5" class="form-control form-control-lg mt-3" value="'.$CommentsBN['reviews'].'" name="reviews"></div>
+                                                <input type="number" step="0.01" class="form-control form-control-lg mb-3" value="'.$CommentsBN['comment_id'].'" name="id" readonly hidden>
+                                                <div class="col ms-2 "><button class="btn btn-success " type="submit">Sauvegarder</button></div>
+                                </form>
+                                <form method="post" action="/supprimer_commentbn" enctype="multipart/form-data">
+                                            <input type="number" step="0.01" class="form-control form-control-lg mb-3" value="'.$CommentsBN['comment_id'].'" name="id" readonly hidden>
+                                            <div class="col ms-2 "><button class="btn btn-danger " type="submit">Supprimer</button></div>
+                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ';
                                 }
                             }
                             ?>
@@ -197,13 +224,20 @@ require_once __DIR__ . '/../_inc/nav.php';
                                                     <input class="form-control form-control-lg " type="number" name="zip_code" value="'.$AnnoncesBars['zip_code'].'">
                                                 </div>
                                             </div>
-                                            <a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'. $AnnoncesBars['id'] . '">Voir l\'annnonce</a><br><br>
+                                            <a class="btn btn-outline-success me-2" type="button" href="/annonces/Bars/'. $AnnoncesBars['id'] . '">Voir l\'annnonce</a><br><br>
                                             <p>Description : <textarea type="text" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" name="description">'.$AnnoncesBars['description'].'</textarea></p>
-                                            <center><button class="btn btn-success" type="submit">Sauvegarder</button></center>
+                                            <div class="row">
+                                            <button class="btn btn-success col" type="submit">Sauvegarder</button>
+                                        </form>
+                                        <form method="post" action="/supprimer_ADbars" enctype="multipart/form-data" class="col">
+                                                    <input type="number" step="0.01" class="form-control form-control-lg mb-3" value="'.$AnnoncesBars['id'].'" name="id" readonly hidden>
+                                                    <div class="ms-2 "><button class="btn btn-danger" type="submit">Supprimer</button></div>
+                                        </form>
+                                        </div>
                                             </td>
                                             
                                         </tr>
-                                    </form>';
+                                   ';
                                 }
                             }
                             ?>
@@ -269,11 +303,17 @@ require_once __DIR__ . '/../_inc/nav.php';
                                             </div>
                                             <a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'. $AnnoncesBN['id'] . '">Voir l\'annnonce</a><br><br>
                                             <p>Description : <textarea type="text" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" name="description">'.$AnnoncesBN['description'].'</textarea></p>
-                                            <center><button class="btn btn-success" type="submit">Sauvegarder</button></center>
+                                            <div class="row">
+                                            <button class="btn btn-success col" type="submit">Sauvegarder</button>
+                                        </form>
+                                        <form method="post" action="/supprimer_ADbn" enctype="multipart/form-data" class="col">
+                                                    <input type="number" step="0.01" class="form-control form-control-lg mb-3" value="'.$AnnoncesBN['id'].'" name="id" readonly hidden>
+                                                    <div class="ms-2 "><button class="btn btn-danger" type="submit">Supprimer</button></div>
+                                        </form>
+                                        </div>
                                             </td>
                                             
-                                        </tr>
-                                    </form>';
+                                        </tr>';
                                 }
                             }
                             ?>
