@@ -7,6 +7,7 @@ use App\Query\BarsQuery;
 use App\Query\BNQuery;
 use App\Query\CommentsBarsQuery;
 use App\Query\CommentsBNQuery;
+use App\Query\LocationQuery;
 use App\Query\UserQuery;
 
 class Login extends AbstractController
@@ -52,8 +53,9 @@ class Login extends AbstractController
         $AnnoncesBars = Container::getInstance(BarsQuery::class)->FindAnnoncesByUsers($login);
         $AnnoncesBN = Container::getInstance(BNQuery::class)->FindAnnoncesByUsers($login);
         $allUsers = Container::getInstance(UserQuery::class)->showAllUsers();
+        $Locations = Container::getInstance(LocationQuery::class)->findByUserForBars($_SESSION['login']);
         
-        $this->render('login/index', ['level' => $userLevel, 'Comments' => $Comments, 'CommentsBN' => $CommentsBN, 'AnnoncesBars' => $AnnoncesBars, 'AnnoncesBN' => $AnnoncesBN, 'allUsers' => $allUsers]);
+        $this->render('login/index', ['level' => $userLevel, 'Comments' => $Comments, 'CommentsBN' => $CommentsBN, 'AnnoncesBars' => $AnnoncesBars, 'AnnoncesBN' => $AnnoncesBN, 'allUsers' => $allUsers, 'Locations' => $Locations]);
         }
         else {
             $this->render('login/index', ['level' => $userLevel]);

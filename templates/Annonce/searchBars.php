@@ -202,6 +202,7 @@
                 <hr style="max-width: 750px;">  
             </div>
             <center><button class ="btn btn-dark" id="btn-load" style="color: green; font-weight: bold;">Charger plus d'annonces</button></center>
+            <p><?=$_SESSION['login']?></p>  
         </div>
         </div>
 

@@ -143,7 +143,7 @@
                                                     echo '<small class="text-muted">Créee le '.$Filter['date_creation'].' <br>Par '.$Filter['user'].' </small></p>';
                                                 echo '</div>';
                                                 echo '<div class="col-4">';
-                                                    echo '<a class="btn btn-outline-success me-2" type="button" href="/annonces/Bars/'.$Filter['id'].'">Voir l\'annonce</a>';
+                                                    echo '<a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'.$Filter['id'].'">Voir l\'annonce</a>';
                                                 echo '</div>';
                                             echo '</div>';
                                         echo '</div>';
@@ -184,7 +184,7 @@
                                                 echo '<small class="text-muted">Créee le '.$BN['date_creation'].' <br>Par '.$BN['user'].' </small></p>';
                                             echo '</div>';
                                             echo '<div class="col-4">';
-                                                echo '<a class="btn btn-outline-success me-2" type="button" href="/annonces/Bars/'.$BN['id'].'">Voir l\'annonce</a>';
+                                                echo '<a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'.$BN['id'].'">Voir l\'annonce</a>';
                                             echo '</div>';
                                         echo '</div>';
                                     echo '</div>';

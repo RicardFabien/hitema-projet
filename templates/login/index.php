@@ -26,6 +26,8 @@ require_once __DIR__ . '/../_inc/nav.php';
     display : none;
 }
 
+
+
 </style>
 
 <h1>Se connecter</h1>
@@ -68,9 +70,48 @@ require_once __DIR__ . '/../_inc/nav.php';
         <input class="btn btn-outline-dark" type="submit" value="Se deconnecter"></center>
         
     </form>
-    <center class="mt-5"><h2><u>Section Commentaires</u></h2></center>
+    
     
     <div class="row">
+    <center class="mt-5"><h2><u>Vos réservations</u></h2></center>
+        <div class="col m-5">
+            <div class="row">
+                <div class="col-12">
+                <center><table class="table" style="max-width: 500px;">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <?php
+                            if (isset($Locations)) {
+                                foreach ($Locations as $Locations) {
+                                    $str = str_replace("00:00:00","",$Locations['location_Date']);
+                                    echo '
+                                    <tr class="t6">
+                                        <th scope="row"><img src="/admin/image/'.$Locations['image'].'" class="img-fluid img-thumbnail" style="max-width: 200px;"></th>
+                                            <td><b>'.$Locations['name'].'</b></td>
+                                        <td>
+                                            <b>'.$str.'</b>
+                                        </td>
+                                    </tr>
+                                                                        
+                                    ';
+                                    
+                                }
+                            }
+                            ?>
+                        </tbody>
+                    </table></center>
+                    
+                </div>
+            </div>
+        </div><br><br>
+
+    <center class="mt-5"><h2><u>Section Commentaires</u></h2></center>
         <div class="col m-5">
             <div class="row">
                 <div class="col-12">
@@ -244,7 +285,7 @@ require_once __DIR__ . '/../_inc/nav.php';
 
                             </tbody>
                     </table>
-                    <center><button class ="btn btn-dark" id="btn-load3" style="color: green; font-weight: bold;">Charger plus de commentaires</button></center>
+                    <center><button class ="btn btn-dark" id="btn-load3" style="color: green; font-weight: bold;">Charger plus d'annonces</button></center>
                 </div>
 
                 <div class="col m-5">
@@ -320,7 +361,7 @@ require_once __DIR__ . '/../_inc/nav.php';
                             
                             </tbody>
                     </table>
-                    <center><button class ="btn btn-dark" id="btn-load4" style="color: green; font-weight: bold;">Charger plus de commentaires</button></center>
+                    <center><button class ="btn btn-dark" id="btn-load4" style="color: green; font-weight: bold;">Charger plus d'annonces</button></center>
                 </div>
              
             </div>

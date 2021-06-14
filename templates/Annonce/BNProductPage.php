@@ -31,7 +31,7 @@
               }
             }
               
-              echo '<br><br><a class="btn btn-outline-success me-2" type="button" href="/payment/bar'.$BN['id'].'">Réserver</a>
+              echo '<br><br><a class="btn btn-outline-success me-2" type="button" href="/payment/bn'.$BN['id'].'">Réserver</a>
 
             </div>
           </div>';
