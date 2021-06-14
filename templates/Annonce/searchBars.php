@@ -203,6 +203,7 @@
             </div>
             <center><button class ="btn btn-dark" id="btn-load" style="color: green; font-weight: bold;">Charger plus d'annonces</button></center>
         </div>
+        </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

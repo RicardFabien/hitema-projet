@@ -157,17 +157,53 @@ require_once __DIR__ . '/../_inc/nav.php';
                                 </tr>
                             </thead>
                             <tbody>
-
                             <?php
                             if (isset($AnnoncesBars)){
                                 foreach ($AnnoncesBars as $AnnoncesBars) {
-                                    echo '<tr class="t3">
+                                    echo '
+                                    <form method="post" action="/modifier_bars" enctype="multipart/form-data">
+                                        <tr class="t3">
                                             <td class="w-25">
-                                                <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80" class="img-fluid img-thumbnail" alt="Sheep">
+                                                <img src="/admin/image/'.$AnnoncesBars['image'].'" class="img-fluid img-thumbnail" alt="Sheep">
+                                                Image :<input type="file" class="form-control" id="customFile" data-show-preview="true" name="file"/>
                                             </td>
-                                            <td><h2>'.$AnnoncesBars['name'].'</h2><br><h3>Adresse : '.$AnnoncesBars['adress'].' '.$AnnoncesBars['zip_code'].'</h3><a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'. $AnnoncesBars['id'] . '">Voir l\'annnonce</a><br><br>' . $AnnoncesBars['description'] . '</td>
-                    
-                                        </tr>';
+                                            <td><p>Nom :<input type="text" class="form-control " value="'.$AnnoncesBars['name'].'" name="name" required></p>
+                                            <div class="row">
+                                                <div class="col-sm ms-3 me-3">Nombre de personne max :<input type="number" class="form-control form-control-lg mb-3" value="'.$AnnoncesBars['max_person'].'" name="max_person" id="exampleInputPassword1"></div>
+                                                <div class="col-sm ms-3 me-3">Prix : <input type="number" step="0.01" class="form-control form-control-lg mb-3" value="'.$AnnoncesBars['price'].'" name="price" id="exampleInputPassword1"></div>
+                                                <div class="col-sm ms-3 me-3">
+                                                Département : 
+                                                <select class="form-select form-select-lg mb-3"  name="lieu" >
+                                                    <option value="'.$AnnoncesBars['lieu'].'" selected>'.$AnnoncesBars['lieu'].'</option>
+                                                    <option value="Essonne">Essonne</option>
+                                                    <option value="Hauts-de-Seine">Hauts-de-Seine</option>
+                                                    <option value="Paris">Paris</option>
+                                                    <option value="Seine-et-Marne">Seine-et-Marne</option>
+                                                    <option value="Seine-Saint-Denis">Seine-Saint-Denis</option>
+                                                    <option value="Val-de-Marne">Val-de-Marne</option>
+                                                    <option value="Val-d\'Oise">Val-d\'Oise</option>
+                                                    <option value="Yvelines">Yvelines</option>
+                                                </select>
+                                            </div>
+                                                <input type="number" step="0.01" class="form-control form-control-lg mb-3" value="'.$AnnoncesBars['id'].'" name="id" hidden>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm ms-3 me-3">
+                                                    Adresse : 
+                                                    <input class="form-control form-control-lg mb-3" type="text" name="adress" value="'.$AnnoncesBars['adress'].'">
+                                                </div>
+                                                <div class="col-sm ms-3 me-3">
+                                                    Code Postal : 
+                                                    <input class="form-control form-control-lg " type="number" name="zip_code" value="'.$AnnoncesBars['zip_code'].'">
+                                                </div>
+                                            </div>
+                                            <a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'. $AnnoncesBars['id'] . '">Voir l\'annnonce</a><br><br>
+                                            <p>Description : <textarea type="text" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" name="description">'.$AnnoncesBars['description'].'</textarea></p>
+                                            <center><button class="btn btn-success" type="submit">Sauvegarder</button></center>
+                                            </td>
+                                            
+                                        </tr>
+                                    </form>';
                                 }
                             }
                             ?>
@@ -194,13 +230,50 @@ require_once __DIR__ . '/../_inc/nav.php';
                             <?php
                             if (isset($AnnoncesBN)){
                                 foreach ($AnnoncesBN as $AnnoncesBN) {
-                                    echo '<tr class="t4">
+                                    echo '
+                                    <form method="post" action="/modifier_bn" enctype="multipart/form-data">
+                                        <tr class="t4">
                                             <td class="w-25">
-                                                <img src="https://images.unsplash.com/photo-1596131397999-bb01560efcae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1267&q=80" class="img-fluid img-thumbnail" alt="Sheep">
+                                                <img src="/admin/image/'.$AnnoncesBN['image'].'" class="img-fluid img-thumbnail" alt="Sheep">
+                                                Image :<input type="file" class="form-control" id="customFile" data-show-preview="true" name="file"/>
                                             </td>
-                                            <td><h2>'.$AnnoncesBN['name'].'</h2><br><h3>Adresse : '.$AnnoncesBN['adress'].' '.$AnnoncesBN['zip_code'].'</h3><a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'. $AnnoncesBN['id'] . '">Voir l\'annnonce</a><br><br>' . $AnnoncesBN['description'] . '</td>
-                    
-                                        </tr>';
+                                            <td><p>Nom :<input type="text" class="form-control " value="'.$AnnoncesBN['name'].'" name="name" required></p>
+                                            <div class="row">
+                                                <div class="col-sm ms-3 me-3">Nombre de personne max :<input type="number" class="form-control form-control-lg mb-3" value="'.$AnnoncesBN['max_person'].'" name="max_person" id="exampleInputPassword1"></div>
+                                                <div class="col-sm ms-3 me-3">Prix : <input type="number" step="0.01" class="form-control form-control-lg mb-3" value="'.$AnnoncesBN['price'].'" name="price" id="exampleInputPassword1"></div>
+                                                <div class="col-sm ms-3 me-3">
+                                                Département : 
+                                                <select class="form-select form-select-lg mb-3"  name="lieu" >
+                                                    <option value="'.$AnnoncesBN['lieu'].'" selected>'.$AnnoncesBN['lieu'].'</option>
+                                                    <option value="Essonne">Essonne</option>
+                                                    <option value="Hauts-de-Seine">Hauts-de-Seine</option>
+                                                    <option value="Paris">Paris</option>
+                                                    <option value="Seine-et-Marne">Seine-et-Marne</option>
+                                                    <option value="Seine-Saint-Denis">Seine-Saint-Denis</option>
+                                                    <option value="Val-de-Marne">Val-de-Marne</option>
+                                                    <option value="Val-d\'Oise">Val-d\'Oise</option>
+                                                    <option value="Yvelines">Yvelines</option>
+                                                </select>
+                                            </div>
+                                                <input type="number" step="0.01" class="form-control form-control-lg mb-3" value="'.$AnnoncesBN['id'].'" name="id" hidden>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm ms-3 me-3">
+                                                    Adresse : 
+                                                    <input class="form-control form-control-lg mb-3" type="text" name="adress" value="'.$AnnoncesBN['adress'].'">
+                                                </div>
+                                                <div class="col-sm ms-3 me-3">
+                                                    Code Postal : 
+                                                    <input class="form-control form-control-lg " type="number" name="zip_code" value="'.$AnnoncesBN['zip_code'].'">
+                                                </div>
+                                            </div>
+                                            <a class="btn btn-outline-success me-2" type="button" href="/annonces/BN/'. $AnnoncesBN['id'] . '">Voir l\'annnonce</a><br><br>
+                                            <p>Description : <textarea type="text" class="form-control " id="exampleInputEmail1" aria-describedby="emailHelp" name="description">'.$AnnoncesBN['description'].'</textarea></p>
+                                            <center><button class="btn btn-success" type="submit">Sauvegarder</button></center>
+                                            </td>
+                                            
+                                        </tr>
+                                    </form>';
                                 }
                             }
                             ?>

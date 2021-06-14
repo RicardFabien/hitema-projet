@@ -55,4 +55,25 @@ class BN extends AbstractController
       }
       header('location: /annonces/BN');
     }
+
+    public function updateBN()
+    {
+
+      $userLevel = Container::getInstance(UserQuery::class)->getStoredUserLevel();
+
+      if($userLevel === UserQuery::HOST_INDICATOR || $userLevel === UserQuery::ADMIN_INDICATOR){
+        $gameQuery = Container::getInstance(BNQuery::class);
+        if( $_FILES['file']['name'] != "" ) {
+          $temp = explode(".", $_FILES["file"]["name"]);
+          $path = round(microtime(true)) . '.' . end($temp);
+          $gameQuery->ModifOneByUser($_POST['id'], $_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description'], $_SESSION["login"], $_POST['adress'], $_POST['zip_code'], $_POST['max_person'],$path);
+          $pathto="admin/image/".$path;
+          move_uploaded_file( $_FILES['file']['tmp_name'],$pathto) or die( "Could not copy file!");
+        }
+        else {
+          $gameQuery->ModifOneByUserWithoutImg($_POST['id'], $_POST['name'], $_POST['lieu'], $_POST['price'], $_POST['description'], $_SESSION["login"], $_POST['adress'], $_POST['zip_code'], $_POST['max_person']);
+        }
+      }
+      header('location: /login');
+    }
 }

@@ -300,5 +300,77 @@ class BarsQuery
     }
 
 
+    public function ModifOneByUser(int $id, String $name, String $lieu, float $price, String $description, String $user, String $adress, int $zip_code, int $max_person, String $image)
+    {   
+        // requête 
+        
+        $sql = '
+            UPDATE API.Bars
+                SET name = :name, lieu = :lieu, price = :price, date_creation = NOW(), description = :description, adress = :adress, zip_code = :zip_code, max_person = :max_person, image = :image
+            WHERE id = :id and user = :user
+        ';
+
+        $sql .= ';';
+
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute([
+            'id' => $id,
+            'name' => $name,
+            'lieu' => $lieu,
+            'price' => $price,
+            'description' => $description,
+            'user' => $user,
+            'adress' => $adress,
+            'zip_code' => $zip_code,
+            'max_person' => $max_person,
+            'image' => $image,
+        ]);
+
+        $result = $query->fetchAll();
+
+        // retour des résultats 
+        return $result;
+    }
+
+    public function ModifOneByUserWithoutImg(int $id, String $name, String $lieu, float $price, String $description, String $user, String $adress, int $zip_code, int $max_person)
+    {   
+        // requête 
+        
+        $sql = '
+            UPDATE API.Bars
+                SET name = :name, lieu = :lieu, price = :price, date_creation = NOW(), description = :description, adress = :adress, zip_code = :zip_code, max_person = :max_person
+            WHERE id = :id and user = :user
+        ';
+
+        $sql .= ';';
+
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute([
+            'id' => $id,
+            'name' => $name,
+            'lieu' => $lieu,
+            'price' => $price,
+            'description' => $description,
+            'user' => $user,
+            'adress' => $adress,
+            'zip_code' => $zip_code,
+            'max_person' => $max_person,
+        ]);
+
+        $result = $query->fetchAll();
+
+        // retour des résultats 
+        return $result;
+    }
+
+
 
 }

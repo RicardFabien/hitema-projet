@@ -39,6 +39,14 @@ class Routing
             'controller' => 'Login',
             'method' => 'update',
         ],
+        '/modifier_bars' => [
+            'controller' => 'Bars',
+            'method' => 'updateBars',
+        ],
+        '/modifier_bn' => [
+            'controller' => 'BN',
+            'method' => 'updateBN',
+        ],
         '/annonces/bars' => [
             'controller' => 'Bars',
             'method' => 'showTableBars',
