@@ -150,7 +150,7 @@ class Payment extends AbstractController
 
             if($type === BNQuery::BN_INDICATOR){
                 $bn_Id = $room_id;
-                $bn = Container::getInstance(BNQuery::class)->getOneBy(["id" => $room_id]);
+                $bn = Container::getInstance(BNQuery::class)->findOneBy(["id" => $room_id]);
 
                 if(isset($bn->price)){
                     $price = $bn->price;
