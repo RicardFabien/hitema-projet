@@ -233,7 +233,7 @@ class LocationQuery
                 On (Location_salle.bn_Id = boites_de_nuit.id)
             INNER JOIN app_user
                 On (Location_salle.user_Id = app_user.id)
-            WHERE user = :login
+            WHERE login = :login
             
         ';
 
@@ -276,7 +276,7 @@ class LocationQuery
                 On (Location_salle.bar_Id = bars.id)
             INNER JOIN app_user
                 On (Location_salle.user_Id = app_user.id)
-            WHERE user = :login
+            WHERE login = :login
             
         ';
 

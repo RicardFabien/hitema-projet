@@ -131,7 +131,7 @@ class UserQuery
 
     }
 
-    public function addUser(String $login, String $password):bool{
+    public function addUser(String $login, String $password, String $email):bool{
 
         if($this->findOneBy(["login" => $login]))
             return false;
@@ -139,13 +139,14 @@ class UserQuery
         $treatedPassword = password_hash($password, PASSWORD_ARGON2I);
 
         $sql = "INSERT INTO App_user
-        VALUE ( NULL, :login, :password,:level )";
+        VALUE ( NULL, :login, :email, :password,:level )";
 
         $query = $this->connection->prepare($sql);
 
         $args = [
             "login" => $login,
             "password" => $treatedPassword,
+            "email" => $email,
             "level" => self::USER_INDICATOR
         ];
 

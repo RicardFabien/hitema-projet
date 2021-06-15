@@ -27,7 +27,9 @@ require_once __DIR__ . '/../_inc/nav.php';
 }
 
 
-
+#tab1>:not(caption)>*>* {
+    padding: .5rem 3.5rem;
+}
 </style>
 
 <h1>Se connecter</h1>
@@ -77,12 +79,14 @@ require_once __DIR__ . '/../_inc/nav.php';
         <div class="col m-5">
             <div class="row">
                 <div class="col-12">
-                <center><table class="table" style="max-width: 500px;">
+                <center><table class="table" id="tab1"style="max-width: 500px;">
                     <thead>
                         <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nom</th>
-                        <th scope="col">Date</th>
+                        <th scope="col" style="width: 50px;">Date</th>
+                        <th scope="col">Prix</th>
+                        <th scope="col">Nb.de Personnes</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -95,8 +99,14 @@ require_once __DIR__ . '/../_inc/nav.php';
                                     <tr class="t6">
                                         <th scope="row"><img src="/admin/image/'.$Locations['image'].'" class="img-fluid img-thumbnail" style="max-width: 200px;"></th>
                                             <td><b>'.$Locations['name'].'</b></td>
-                                        <td>
+                                        <td >
                                             <b>'.$str.'</b>
+                                        </td>
+                                        <td>
+                                            <b>'.$Locations['price'].'€</b>
+                                        </td>
+                                        <td>
+                                            <b>'.$Locations['person_nbr'].'</b>
                                         </td>
                                     </tr>
                                                                         

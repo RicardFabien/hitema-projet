@@ -16,7 +16,8 @@ class Register extends AbstractController
         if(isset($_POST["login"]) &&  isset($_POST["password"])){
             $login = $_POST["login"];
             $password = $_POST["password"];
-            $alreadyInUse = !Container::getInstance(UserQuery::class)->addUser($login,$password);
+            $email = $_POST["email"];
+            $alreadyInUse = !Container::getInstance(UserQuery::class)->addUser($login,$password,$email);
 
         }
             
