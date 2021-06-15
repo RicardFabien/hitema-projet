@@ -377,6 +377,8 @@ class BarsQuery
         
         $sql = "DELETE FROM `comments_bars`
             WHERE Bars_id = :Bars_id;
+            DELETE FROM `location_salle`
+            WHERE bar_Id = :Bars_id;
             DELETE FROM `bars`
             WHERE id = :Bars_id and user = user;";
         

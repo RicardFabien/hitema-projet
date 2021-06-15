@@ -376,6 +376,8 @@ class BNQuery
         
         $sql = "DELETE FROM `comments_boites_de_nuit`
             WHERE boites_de_nuit_id = :BN_id;
+            DELETE FROM `location_salle`
+            WHERE bn_Id = :BN_id;
             DELETE FROM `boites_de_nuit`
             WHERE id = :BN_id and user = user;";
         
