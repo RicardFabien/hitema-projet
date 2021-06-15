@@ -25,7 +25,7 @@ class BNQuery
         $sql = '
             SELECT 
             API.boites_de_nuit.*
-            FROM App_user
+            FROM API.boites_de_nuit
             WHERE 
         ';
 
