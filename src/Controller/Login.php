@@ -54,8 +54,9 @@ class Login extends AbstractController
         $AnnoncesBN = Container::getInstance(BNQuery::class)->FindAnnoncesByUsers($login);
         $allUsers = Container::getInstance(UserQuery::class)->showAllUsers();
         $Locations = Container::getInstance(LocationQuery::class)->findByUserForBars($_SESSION['login']);
+        $Locations2 = Container::getInstance(LocationQuery::class)->findByUserForBn($_SESSION['login']);
         
-        $this->render('login/index', ['level' => $userLevel, 'Comments' => $Comments, 'CommentsBN' => $CommentsBN, 'AnnoncesBars' => $AnnoncesBars, 'AnnoncesBN' => $AnnoncesBN, 'allUsers' => $allUsers, 'Locations' => $Locations]);
+        $this->render('login/index', ['level' => $userLevel, 'Comments' => $Comments, 'CommentsBN' => $CommentsBN, 'AnnoncesBars' => $AnnoncesBars, 'AnnoncesBN' => $AnnoncesBN, 'allUsers' => $allUsers, 'Locations' => $Locations, 'Locations2' => $Locations2]);
         }
         else {
             $this->render('login/index', ['level' => $userLevel]);

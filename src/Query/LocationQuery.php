@@ -223,6 +223,49 @@ class LocationQuery
         return $result;
     }*/
 
+    public function findByUserForBn(String $login)
+    {
+        // requête 
+        $sql = '
+            SELECT Location_salle.*, boites_de_nuit.*, app_user.*
+            FROM Location_salle
+            INNER JOIN boites_de_nuit
+                On (Location_salle.bn_Id = boites_de_nuit.id)
+            INNER JOIN app_user
+                On (Location_salle.user_Id = app_user.id)
+            WHERE user = :login
+            
+        ';
+
+        /*
+            requête préparée
+            création de variables dans la requête avec :
+        */
+
+        
+        
+        $sql .= ';';
+
+        // préparation de la requête
+        $query = $this->connection->prepare($sql);
+
+        // exécution de la requête
+        // donner des valeurs aux variables de requête avec un array associatif
+        $query->execute([
+            "login" => $login,
+        ]);
+
+        /*
+            récupération des résultats
+                fetchObject : permet d'associer les données à un modèle
+                fetchAll : récupérer plusieurs résultats
+        */
+        $result = $query->fetchAll();
+
+        // retour des résultats 
+        return $result;
+    }
+
     public function findByUserForBars(String $login)
     {
         // requête 

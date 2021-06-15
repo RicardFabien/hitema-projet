@@ -87,8 +87,9 @@ require_once __DIR__ . '/../_inc/nav.php';
                     </thead>
                     <tbody>
                             <?php
-                            if (isset($Locations)) {
-                                foreach ($Locations as $Locations) {
+                            if (isset($Locations) or isset($Locations2)) {
+                                $new = array_merge($Locations,$Locations2);
+                                foreach ($new as $Locations) {
                                     $str = str_replace("00:00:00","",$Locations['location_Date']);
                                     echo '
                                     <tr class="t6">
