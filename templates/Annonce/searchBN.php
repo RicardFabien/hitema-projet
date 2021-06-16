@@ -121,7 +121,7 @@
             error_reporting(0);
         if($_POST['lieu'] != "" && $_POST['nbParticipants'] != "")
             {
-                if(empty($var) == false)
+                if(empty($Filter) == false)
                 {
                     foreach($Filter as $Filter)
                     {
