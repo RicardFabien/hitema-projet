@@ -47,7 +47,7 @@ require_once __DIR__ . '/../_inc/nav.php';
 
                     <label for="person_number">Nombre de personne : </label>
 
-                    <input type="number" name = "person_number" min = 0 required class="form-control"/>
+                    <input type="number" name = "person_number" min = 0 max = <?php echo $locationData->getMax_person() ?> required class="form-control"/>
 
                     <label for="location_date">Date de la location : </label>
                     <select name = "location_date" class="form-control" required><?php foreach($dates as $date){ ?>
