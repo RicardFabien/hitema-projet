@@ -25,6 +25,7 @@
 				<ul class="list-unstyled text-small">
 				<li><a class="link-secondary" href="/quiNous">Qui sommes-nous ?</a></li>
 				<li><a class="link-secondary" href="/contact">Contact</a></li>
+				<li><a class="link-secondary" href="/legal">Conditions de partage des données</a></li>
 				</ul>
 			</div>
 			
